@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/contentProviderFragment">
+
+    <fragment
+        android:id="@+id/contentProviderFragment"
+        android:name="com.newcore.letstryit.ui.contentprovider.ContentProviderFragment"
+        android:label="fragment_content_provideer"
+        tools:layout="@layout/fragment_content_provideer" >
+        <action
+            android:id="@+id/action_contentProviderFragment_to_showContentProviderDataFragment"
+            app:destination="@id/showContentProviderDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showContentProviderDataFragment"
+        android:name="com.newcore.letstryit.ui.showcontentproviderdata.ShowContentProviderDataFragment"
+        android:label="ShowContentProviderDataFragment" />
+</navigation>
