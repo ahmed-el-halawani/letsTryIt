@@ -3,6 +3,11 @@ package com.newcore.letstryit.model.local.sqlite
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.newcore.letstryit.util.Constants.EMAIL
+import com.newcore.letstryit.util.Constants.ID
+import com.newcore.letstryit.util.Constants.NAME
+import com.newcore.letstryit.util.Constants.PHONE_NUMBER
+import com.newcore.letstryit.util.Constants.USERS_TABLE
 
 /*
 table user
@@ -15,14 +20,6 @@ table user
 class MySqlite constructor(
     context: Context,
 ) : SQLiteOpenHelper(context, "MyDatabase", null, 1) {
-
-    companion object{
-        const val ID = "id"
-        const val NAME = "name"
-        const val EMAIL = "email"
-        const val PHONE_NUMBER = "phone_number"
-        const val USERS_TABLE = "USERS"
-    }
 
     override fun onCreate(p0: SQLiteDatabase?) {
         p0!!.execSQL("""

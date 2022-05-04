@@ -20,7 +20,7 @@ class ContentProviderFragment : BaseFragment<FragmentContentProvideerBinding>
 
         binding.btnSave.setOnClickListener {
             saveData()
-            println(userRepo.getUsers())
+            clearForm()
         }
 
         binding.btnShowData.setOnClickListener {
@@ -28,6 +28,15 @@ class ContentProviderFragment : BaseFragment<FragmentContentProvideerBinding>
         }
 
     }
+
+    fun clearForm(){
+        binding.apply {
+            etEmail.setText("")
+            etName.setText("")
+            etPhoneNumber.setText("")
+        }
+    }
+
 
     fun saveData() {
         userRepo.insert(

@@ -8,6 +8,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import com.newcore.letstryit.model.local.sqlite.MySqlite
+import com.newcore.letstryit.util.Constants.USERS_TABLE
 
 enum class Routes(val route: String, val code: Int) {
     Users("users", 1),
@@ -44,11 +45,8 @@ class MyContentProvider : ContentProvider() {
         } ?: false
     }
 
-
     private fun table(uri: Uri) = when (Routes.fromCode(Routes.matcher.match(uri))) {
-        Routes.Users, Routes.UserId -> {
-            MySqlite.USERS_TABLE
-        }
+        Routes.Users, Routes.UserId -> USERS_TABLE
     }
 
     override fun query(
@@ -89,7 +87,8 @@ class MyContentProvider : ContentProvider() {
             p1,
             p2
         ).also {
-            val uri = ContentUris.withAppendedId(Routes.routeFactory(Routes.Users), (p2?.get(0) ?: "-1").toLong())
+            val uri = ContentUris.withAppendedId(Routes.routeFactory(Routes.Users),
+                (p2?.get(0) ?: "-1").toLong())
             context!!.contentResolver.notifyChange(uri, null)
         }
     }
@@ -104,7 +103,8 @@ class MyContentProvider : ContentProvider() {
             table(p0),
             values, whereClause, whereArgs
         ).also {
-            val uri = ContentUris.withAppendedId(Routes.routeFactory(Routes.Users), (whereArgs?.get(0) ?: "-1").toLong())
+            val uri = ContentUris.withAppendedId(Routes.routeFactory(Routes.Users),
+                (whereArgs?.get(0) ?: "-1").toLong())
 
             context!!.contentResolver.notifyChange(uri, null)
         }

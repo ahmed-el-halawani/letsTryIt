@@ -3,8 +3,8 @@ package com.newcore.letstryit.model.repositories
 import android.content.ContentResolver
 import com.newcore.letstryit.model.entites.User
 import com.newcore.letstryit.model.local.contentprovider.Routes
-import com.newcore.letstryit.model.local.sqlite.MySqlite
 import com.newcore.letstryit.model.repositories.irepo.IUserRepo
+import com.newcore.letstryit.util.Constants.ID
 
 class UserRepo(private val contentResolver: ContentResolver) : IUserRepo {
 
@@ -15,7 +15,7 @@ class UserRepo(private val contentResolver: ContentResolver) : IUserRepo {
         return contentResolver.query(
             userRoute,
             null,
-            "${MySqlite.ID} = ?",
+            "$ID = ?",
             arrayOf("$id"),
             null,
         )?.let { cursor ->
@@ -50,7 +50,7 @@ class UserRepo(private val contentResolver: ContentResolver) : IUserRepo {
         return contentResolver.update(
             userRoute,
             user.toContentValues(),
-            MySqlite.ID + "= ?",
+            "$ID= ?",
             arrayOf("${user.id}")
         )
     }
@@ -58,7 +58,7 @@ class UserRepo(private val contentResolver: ContentResolver) : IUserRepo {
     override fun delete(id: Int): Int {
         return contentResolver.delete(
             userRoute,
-            MySqlite.ID + "= ?",
+            "$ID= ?",
             arrayOf("$id")
         )
     }
