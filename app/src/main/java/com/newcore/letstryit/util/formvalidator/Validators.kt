@@ -35,4 +35,10 @@ object Validators {
 
         return null
     }
+
+    fun confirmValidator(target: String?, confirmFrom: String?): String? {
+        if (target != confirmFrom)
+            return "password and confirm password not the same"
+        return null
+    }
 }

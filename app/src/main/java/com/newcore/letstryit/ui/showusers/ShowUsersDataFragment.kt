@@ -1,4 +1,4 @@
-package com.newcore.letstryit.ui.showcontentproviderdata
+package com.newcore.letstryit.ui.showusers
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,7 @@ import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentShowContentProviderDataBinding
 import com.newcore.letstryit.model.repositories.UserRepo
 
-class ShowContentProviderDataFragment : BaseFragment<FragmentShowContentProviderDataBinding>
+class ShowUsersDataFragment : BaseFragment<FragmentShowContentProviderDataBinding>
     (FragmentShowContentProviderDataBinding::inflate) {
 
     val userRepo by lazy {

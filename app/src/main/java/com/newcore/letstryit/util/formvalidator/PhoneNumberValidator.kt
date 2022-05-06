@@ -1,15 +1,17 @@
 package com.newcore.letstryit.util.formvalidator
 
-data class PhoneNumberValidator(private val phoneNumber: String? = null) :
-    BaseValidator<String>(phoneNumber) {
+class PhoneNumberValidator(phoneNumber: String? = null) : FieldValidator<String>(phoneNumber) {
+
     init {
         checkValidation()
     }
 
     override fun checkValidation() {
         message = Validators.run {
-            emptyValidator(phoneNumber) ?: numberValidator(phoneNumber!!) ?: lengthValidator(
-                phoneNumber!!, 11, 11)
+            emptyValidator(value) ?: numberValidator(value!!) ?: lengthValidator(value!!, 11, 11)
         }
     }
+
+    override fun reset(): FieldValidator<String> = PhoneNumberValidator()
+
 }

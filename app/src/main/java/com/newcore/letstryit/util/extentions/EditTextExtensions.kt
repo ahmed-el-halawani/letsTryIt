@@ -17,5 +17,7 @@ object EditTextExtensions {
             override fun afterTextChanged(p0: Editable?) {
             }
         })
+
     }
+
 }

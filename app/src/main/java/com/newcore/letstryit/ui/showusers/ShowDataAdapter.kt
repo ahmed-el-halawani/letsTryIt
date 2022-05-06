@@ -1,4 +1,4 @@
-package com.newcore.letstryit.ui.showcontentproviderdata
+package com.newcore.letstryit.ui.showusers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -3,19 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/contentProviderFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/contentProviderFragment"
         android:name="com.newcore.letstryit.ui.contentprovider.ContentProviderFragment"
         android:label="fragment_content_provideer"
-        tools:layout="@layout/fragment_content_provideer" >
+        tools:layout="@layout/fragment_content_provideer">
         <action
             android:id="@+id/action_contentProviderFragment_to_showContentProviderDataFragment"
             app:destination="@id/showContentProviderDataFragment" />
     </fragment>
     <fragment
         android:id="@+id/showContentProviderDataFragment"
-        android:name="com.newcore.letstryit.ui.showcontentproviderdata.ShowContentProviderDataFragment"
-        android:label="ShowContentProviderDataFragment" />
+        android:name="com.newcore.letstryit.ui.showusers.ShowUsersDataFragment"
+        android:label="ShowContentProviderDataFragment"
+        tools:layout="@layout/fragment_show_content_provider_data" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.newcore.letstryit.ui.register.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_showAccountsDataFragment"
+            app:destination="@id/showAccountsDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.newcore.letstryit.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.newcore.letstryit.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_contentProviderFragment"
+            app:destination="@id/contentProviderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showAccountsDataFragment"
+        android:name="com.newcore.letstryit.ui.showaccount.ShowAccountsDataFragment"
+        android:label="ShowAccountsDataFragment"
+        tools:layout="@layout/fragment_show_content_provider_data" />
+    <action
+        android:id="@+id/action_global_homeFragment"
+        app:destination="@id/homeFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@+id/main_nav"
+        app:popUpToInclusive="true" />
 </navigation>

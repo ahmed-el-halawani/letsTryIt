@@ -8,18 +8,21 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import com.newcore.letstryit.model.local.sqlite.MySqlite
+import com.newcore.letstryit.util.Constants.ACCOUNT_TABLE
 import com.newcore.letstryit.util.Constants.USERS_TABLE
 
 enum class Routes(val route: String, val code: Int) {
     Users("users", 1),
-    UserId("users/#", 2);
+    UserId("users/#", 2),
+    Accounts("accounts", 3),
+    AccountsId("accounts/#", 4);
 
     companion object {
         fun fromCode(code: Int): Routes {
             return values().first { it.code == code }
         }
 
-        const val autherity = "com.newcore.letstryit.provider.mysql"
+        private const val autherity = "com.newcore.letstryit.provider.mysql"
 
         fun routeFactory(route: Routes): Uri =
             Uri.parse("content://$autherity/${route.route}")
@@ -29,6 +32,8 @@ enum class Routes(val route: String, val code: Int) {
         init {
             matcher.addURI(autherity, Users.route, Users.code)
             matcher.addURI(autherity, UserId.route, UserId.code)
+            matcher.addURI(autherity, Accounts.route, Accounts.code)
+            matcher.addURI(autherity, AccountsId.route, AccountsId.code)
         }
     }
 }
@@ -47,6 +52,7 @@ class MyContentProvider : ContentProvider() {
 
     private fun table(uri: Uri) = when (Routes.fromCode(Routes.matcher.match(uri))) {
         Routes.Users, Routes.UserId -> USERS_TABLE
+        Routes.Accounts, Routes.AccountsId -> ACCOUNT_TABLE
     }
 
     override fun query(
@@ -113,8 +119,8 @@ class MyContentProvider : ContentProvider() {
     override fun getType(p0: Uri): String {
         val route = Routes.fromCode(Routes.matcher.match(p0))
         return when (route) {
-            Routes.Users -> "vnd.android.cursor.dir/vnd.com.newcore.letstryit.provider."
-            Routes.UserId -> "vnd.android.cursor.item/vnd.com.newcore.letstryit.provider."
+            Routes.Users, Routes.Accounts -> "vnd.android.cursor.dir/vnd.com.newcore.letstryit.provider."
+            Routes.UserId, Routes.AccountsId -> "vnd.android.cursor.item/vnd.com.newcore.letstryit.provider."
         } + route.route
     }
 }
