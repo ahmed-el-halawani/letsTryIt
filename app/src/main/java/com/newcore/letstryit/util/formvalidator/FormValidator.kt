@@ -2,15 +2,16 @@ package com.newcore.letstryit.util.formvalidator
 
 abstract class FormValidator {
     var checkIt = false
+        private set
 
-    fun     checkFormValidation(): Boolean {
+    abstract fun getFieldsValidators(): List<FieldValidator<*>>
+
+    fun checkFormValidation(): Boolean {
         if (!checkIt)
             enableValidationChecker()
-
         return isValidForm()
     }
 
-    abstract fun getFieldsValidators(): List<FieldValidator<*>>
 
     private fun enableValidationChecker() {
         checkIt = true

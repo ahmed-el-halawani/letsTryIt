@@ -7,7 +7,7 @@ import com.newcore.letstryit.model.entites.Account
 import com.newcore.letstryit.model.repositories.AccountRepo
 
 class RegisterFragmentViewModel(application: Application) : AndroidViewModel(application) {
-    val accountRepo: AccountRepo by lazy {
+    private val accountRepo: AccountRepo by lazy {
         AccountRepo(application.contentResolver)
     }
 
@@ -30,15 +30,13 @@ class RegisterFragmentViewModel(application: Application) : AndroidViewModel(app
 
     fun isFormValidatorEnable() = registerForm.checkIt
 
-    private fun save() {
-        accountRepo.insert(
-            Account(
-                email = registerForm.emailValidator.value!!,
-                password = registerForm.passwordValidator.value!!,
-                userName = registerForm.userNameValidator.value!!
-            )
+    private fun save() = accountRepo.insert(
+        Account(
+            email = registerForm.emailValidator.value!!,
+            password = registerForm.passwordValidator.value!!,
+            userName = registerForm.userNameValidator.value!!
         )
-    }
+    )
 
 
     private fun clearForm() {

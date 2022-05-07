@@ -7,12 +7,12 @@ data class RegisterForm(
     var userNameValidator: NameValidator = NameValidator(),
     var passwordValidator: PasswordValidator = PasswordValidator(),
     var confirmPasswordValidator: ConfirmPasswordValidator = ConfirmPasswordValidator(),
-) : FormValidator() {
+) : FormValidatorWithConfirmPassword() {
     override fun getFieldsValidators() = listOf(
         emailValidator, userNameValidator, passwordValidator, confirmPasswordValidator
     )
 
-    fun setConfirmPassword(value: String? = null) {
+    override fun setConfirmPassword(value: String?) {
         confirmPasswordValidator = ConfirmPasswordValidator(value, passwordValidator.value)
     }
 }
