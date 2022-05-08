@@ -7,6 +7,7 @@
  2- content provider  
  3- mvvm pattern  
  4- form validation  
+ 5- navigation component  
  
  ## Working on
  1- dagger2  
