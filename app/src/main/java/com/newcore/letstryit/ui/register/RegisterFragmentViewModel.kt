@@ -37,6 +37,8 @@ class RegisterFragmentViewModel(val app: Application) : AndroidViewModel(app) {
     private val registerErrorMutableLiveData = MutableLiveData<String?>()
     val registerErrorLiveData = registerErrorMutableLiveData
 
+    fun settingsLiveData() = settingsSharedPreference.getSettingsLiveData()
+
     fun withForm(onChange: (RegisterForm) -> Unit) {
         registerErrorMutableLiveData.value = null
         onChange(registerForm)
@@ -72,7 +74,6 @@ class RegisterFragmentViewModel(val app: Application) : AndroidViewModel(app) {
             userName = registerForm.userNameValidator.value!!
         )
     )
-
 
     private fun clearForm() {
         registerForm = RegisterForm()

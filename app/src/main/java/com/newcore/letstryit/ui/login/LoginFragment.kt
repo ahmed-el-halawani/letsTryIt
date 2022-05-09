@@ -1,10 +1,10 @@
 package com.newcore.letstryit.ui.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentLoginBinding
 import com.newcore.letstryit.util.extentions.EditTextExtensions.onTextChange
@@ -13,15 +13,23 @@ import com.newcore.letstryit.util.formvalidator.PasswordValidator
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
-
-    val vm: LoginViewModel by viewModels()
+    private val vm: LoginViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupFormListener()
-        setupFormErrorHandler()
-        setupButtons()
         loginErrorListener()
+        loginStateListener()
+        setupFormErrorHandler()
+
+        setupButtons()
+    }
+
+    private fun loginStateListener() {
+        vm.settingsLiveData().observe(viewLifecycleOwner) {
+            if (it.account != null)
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToProfileFragment())
+        }
     }
 
     private fun loginErrorListener() {
@@ -31,15 +39,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         }
     }
 
-
     private fun setupButtons() = binding.apply {
         btnLogin.setOnClickListener {
             if (vm.loginAndClear())
                 clearForm()
-        }
-
-        btnGetSettings.setOnClickListener {
-            Log.e("settings", "settingsbutton: " + vm.getSettings() ?: "")
         }
     }
 

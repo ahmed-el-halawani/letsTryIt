@@ -38,6 +38,7 @@ class LoginViewModel(val app: Application) : AndroidViewModel(app) {
     private val loginErrorMutableLiveData = MutableLiveData<String?>()
     val loginErrorLiveData = loginErrorMutableLiveData
 
+    fun settingsLiveData() = settingsSharedPreference.getSettingsLiveData()
 
     fun withForm(onChange: (LoginFormValidator) -> Unit) {
         loginErrorMutableLiveData.value = null

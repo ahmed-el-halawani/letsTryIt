@@ -18,10 +18,19 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        formErrorListener()
+        loginStateListener()
         setupFormListener()
         setupFormErrorHandler()
+
         setupButtons()
-        formErrorListener()
+    }
+
+    private fun loginStateListener() {
+        vm.settingsLiveData().observe(viewLifecycleOwner) {
+            if (it.account != null)
+                findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToProfileFragment())
+        }
     }
 
     private fun formErrorListener() {
@@ -29,7 +38,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
             binding.tvFormError.isVisible = it != null
             binding.tvFormError.text = it
         }
-
     }
 
     private fun setupButtons() = binding.apply {

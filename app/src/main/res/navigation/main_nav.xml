@@ -27,12 +27,19 @@
         <action
             android:id="@+id/action_registerFragment_to_showAccountsDataFragment"
             app:destination="@id/showAccountsDataFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.newcore.letstryit.ui.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.newcore.letstryit.ui.home.HomeFragment"
@@ -60,4 +67,8 @@
         app:launchSingleTop="true"
         app:popUpTo="@+id/main_nav"
         app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.newcore.letstryit.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>
