@@ -1,36 +1,71 @@
 package com.newcore.letstryit.ui.register
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.newcore.letstryit.R
 import com.newcore.letstryit.model.entites.Account
+import com.newcore.letstryit.model.local.prefrence.MySettingsSharedPreference
 import com.newcore.letstryit.model.repositories.AccountRepo
+import com.newcore.letstryit.model.repositories.AuthenticationFacade
+import com.newcore.letstryit.model.repositories.SettingsSharedPreferenceRepo
+import com.newcore.letstryit.util.Either
+import com.newcore.letstryit.util.exceptions.SomethingWrongHappened
+import com.newcore.letstryit.util.exceptions.UserAlreadyExist
 
-class RegisterFragmentViewModel(application: Application) : AndroidViewModel(application) {
-    private val accountRepo: AccountRepo by lazy {
-        AccountRepo(application.contentResolver)
+class RegisterFragmentViewModel(val app: Application) : AndroidViewModel(app) {
+    private val settingsSharedPreference = SettingsSharedPreferenceRepo(
+        MySettingsSharedPreference.getInstance(
+            app.getSharedPreferences(
+                app.getString(R.string.pref_file_key),
+                Context.MODE_PRIVATE
+            )
+        )
+    )
+
+    private val accountRepo = AccountRepo(app.contentResolver)
+
+    private val authenticationFacade by lazy {
+        AuthenticationFacade(accountRepo, settingsSharedPreference)
     }
 
     private var registerForm = RegisterForm()
     private val registerFormMutableLiveDouble = MutableLiveData(registerForm)
     val registerFormLiveData = registerFormMutableLiveDouble
 
+    private val registerErrorMutableLiveData = MutableLiveData<String?>()
+    val registerErrorLiveData = registerErrorMutableLiveData
+
     fun withForm(onChange: (RegisterForm) -> Unit) {
+        registerErrorMutableLiveData.value = null
         onChange(registerForm)
         notifyChange()
     }
 
-    fun saveAndClear() = registerForm.checkFormValidation().also {
-        if (it) {
-            save()
-            clearForm()
+    fun saveAndClear(): Boolean {
+        if (registerForm.checkFormValidation()) {
+            return when (val src = save()) {
+                is Either.Failure -> {
+                    registerErrorMutableLiveData.value = when (src.failure) {
+                        SomethingWrongHappened -> app.getString(R.string.something_wrong_happened)
+                        UserAlreadyExist -> app.getString(R.string.user_already_exist)
+                    }
+                    false
+                }
+                is Either.Success -> {
+                    clearForm()
+                    true
+                }
+            }
         }
         notifyChange()
+        return false
     }
 
     fun isFormValidatorEnable() = registerForm.checkIt
 
-    private fun save() = accountRepo.insert(
+    private fun save() = authenticationFacade.register(
         Account(
             email = registerForm.emailValidator.value!!,
             password = registerForm.passwordValidator.value!!,

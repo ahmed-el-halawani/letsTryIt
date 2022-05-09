@@ -2,6 +2,7 @@ package com.newcore.letstryit.ui.register
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.newcore.letstryit.core.BaseFragment
@@ -20,6 +21,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         setupFormListener()
         setupFormErrorHandler()
         setupButtons()
+        formErrorListener()
+    }
+
+    private fun formErrorListener() {
+        vm.registerErrorLiveData.observe(viewLifecycleOwner) {
+            binding.tvFormError.isVisible = it != null
+            binding.tvFormError.text = it
+        }
+
     }
 
     private fun setupButtons() = binding.apply {

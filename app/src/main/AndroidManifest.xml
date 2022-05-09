@@ -31,6 +31,7 @@
             android:readPermission="com.newcore.letstryit.permission.read"
             android:writePermission="com.newcore.letstryit.permission.write"
             />
+
     </application>
 
 </manifest>

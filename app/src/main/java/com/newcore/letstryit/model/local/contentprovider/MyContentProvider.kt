@@ -62,6 +62,7 @@ class MyContentProvider : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?,
     ): Cursor? {
+
         val c = writable.query(
             table(p0),
             projection,
