@@ -1,4 +1,4 @@
-package com.newcore.letstryit.services
+package com.newcore.letstryit.util.serviceHelper
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -7,8 +7,10 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.location.LocationManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.location.LocationManagerCompat
 import com.newcore.letstryit.R
 
 
@@ -16,8 +18,6 @@ internal class MyAppsNotificationManager private constructor(val context: Contex
     private val notificationManagerCompat: NotificationManagerCompat =
         NotificationManagerCompat.from(context)
 
-    private val notificationManager: NotificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     fun registerNotificationChannelChannel(
         channelId: String?,
@@ -28,9 +28,10 @@ internal class MyAppsNotificationManager private constructor(val context: Contex
             channelName,
             NotificationManager.IMPORTANCE_DEFAULT)
         notificationChannel.description = channelDescription
-        val notificationManager: NotificationManager = context.getSystemService(
-            NotificationManager::class.java)
-        notificationManager.createNotificationChannel(notificationChannel)
+
+        val z = context.getSystemService(LocationManager::class.java)  as LocationManager
+
+        notificationManagerCompat.createNotificationChannel(notificationChannel)
     }
 
     fun triggerNotification(
@@ -61,7 +62,7 @@ internal class MyAppsNotificationManager private constructor(val context: Contex
     }
 
     fun cancelNotification(notificationId: Int) {
-        notificationManager.cancel(notificationId)
+        notificationManagerCompat.cancel(notificationId)
     }
 
     companion object {

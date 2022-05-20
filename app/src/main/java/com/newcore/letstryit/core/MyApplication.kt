@@ -6,7 +6,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
 import com.newcore.letstryit.R
-import com.newcore.letstryit.services.MyAppsNotificationManager
+import com.newcore.letstryit.util.serviceHelper.MyAppsNotificationManager
 
 
 class MyApplication : Application() {

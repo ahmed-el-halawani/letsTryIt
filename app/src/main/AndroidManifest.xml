@@ -5,6 +5,9 @@
     <permission android:name="com.newcore.letstryit.permission.read" />
     <permission android:name="com.newcore.letstryit.permission.write" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".core.MyApplication"
         android:allowBackup="true"
