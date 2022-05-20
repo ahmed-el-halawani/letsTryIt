@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.newcore.letstryit">
 
-
-    <permission android:name="com.newcore.letstryit.permission.read"/>
-    <permission android:name="com.newcore.letstryit.permission.write"/>
+    <permission android:name="com.newcore.letstryit.permission.read" />
+    <permission android:name="com.newcore.letstryit.permission.write" />
 
     <application
         android:name=".core.MyApplication"
@@ -14,6 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LetsTryIt">
+        <activity
+            android:name=".ui.intent.IntentTestActivity"
+            android:exported="false" />
+
+        <service
+            android:name=".services.MyFirebaseCloudMassageService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
@@ -29,9 +41,7 @@
             android:authorities="com.newcore.letstryit.provider.mysql"
             android:exported="true"
             android:readPermission="com.newcore.letstryit.permission.read"
-            android:writePermission="com.newcore.letstryit.permission.write"
-            />
-
+            android:writePermission="com.newcore.letstryit.permission.write" />
     </application>
 
 </manifest>

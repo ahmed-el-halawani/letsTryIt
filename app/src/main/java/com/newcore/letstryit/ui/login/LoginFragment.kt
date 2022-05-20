@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.newcore.letstryit.R
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentLoginBinding
 import com.newcore.letstryit.util.extentions.EditTextExtensions.onTextChange
@@ -23,12 +24,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         setupFormErrorHandler()
 
         setupButtons()
+
+
     }
 
     private fun loginStateListener() {
         vm.settingsLiveData().observe(viewLifecycleOwner) {
             if (it.account != null)
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToProfileFragment())
+                    .also {
+                        findNavController().clearBackStack(R.id.loginFragment)
+                    }
         }
     }
 

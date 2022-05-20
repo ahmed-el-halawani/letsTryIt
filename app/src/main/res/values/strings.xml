@@ -7,4 +7,7 @@
     <string name="something_wrong_happened">something wrong happened , please try again
         later</string>
     <string name="user_already_exist">user already exist</string>
+    <string name="channel_id">channelId</string>
+    <string name="channel_name">firebase notification channel</string>
+    <string name="channel_description">firebase cloud massaging notifications</string>
 </resources>

@@ -35,7 +35,7 @@
         android:id="@+id/loginFragment"
         android:name="com.newcore.letstryit.ui.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -44,7 +44,7 @@
         android:id="@+id/homeFragment"
         android:name="com.newcore.letstryit.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_intent_infos">
 
         <action
             android:id="@+id/action_homeFragment_to_registerFragment"
@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_homeFragment_to_contentProviderFragment"
             app:destination="@id/contentProviderFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_intentInfosFragment"
+            app:destination="@id/intentInfosFragment" />
     </fragment>
     <fragment
         android:id="@+id/showAccountsDataFragment"
@@ -71,4 +74,9 @@
         android:id="@+id/profileFragment"
         android:name="com.newcore.letstryit.ui.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/intentInfosFragment"
+        android:name="com.newcore.letstryit.ui.intent.IntentInfosFragment"
+        android:label="IntentInfosFragment"
+        tools:layout="@layout/fragment_intent_infos" />
 </navigation>
