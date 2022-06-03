@@ -2,6 +2,8 @@
 
 this project for learning more about android its libs and core components
 
+## download app from [Release](https://github.com/ahmedgomaa97/letsTryIt/releases/tag/1.0)
+
 ## Current app contains
 
 1- sqlite  
