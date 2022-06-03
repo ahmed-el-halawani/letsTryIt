@@ -8,7 +8,7 @@ import com.newcore.letstryit.databinding.ItemIntentInfoButtonBinding
 class ButtonsAdapter() :
     RecyclerView.Adapter<ButtonsAdapter.DataAdapterViewHolder>() {
 
-    var items: List<IntentButton> = emptyList()
+    var items: List<ElevatedButton> = emptyList()
         set(value) {
             field = value
             notifyItemRangeChanged(0, value.size)
@@ -16,7 +16,7 @@ class ButtonsAdapter() :
 
     data class DataAdapterViewHolder(val binding: ItemIntentInfoButtonBinding) : RecyclerView
     .ViewHolder(binding.root) {
-        operator fun invoke(item: IntentButton) {
+        operator fun invoke(item: ElevatedButton) {
             binding.apply {
                 tvName.text = item.name
                 tvDescription.text = item.description

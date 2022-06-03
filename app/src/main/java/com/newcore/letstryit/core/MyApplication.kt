@@ -6,18 +6,18 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.messaging.FirebaseMessaging
 import com.newcore.letstryit.R
-import com.newcore.letstryit.util.serviceHelper.MyAppsNotificationManager
+import com.newcore.letstryit.util.serviceHelper.NotificationManagerHelper
 
 
 class MyApplication : Application() {
 
-    private val myAppsNotificationManager: MyAppsNotificationManager by lazy {
-        MyAppsNotificationManager.getInstance(this)!!
+    private val notificationManagerHelper: NotificationManagerHelper by lazy {
+        NotificationManagerHelper(this)
     }
 
     override fun onCreate() {
         super.onCreate()
-        myAppsNotificationManager.registerNotificationChannelChannel(
+        notificationManagerHelper.registerNotificationChannelChannel(
             getString(R.string.channel_id),
             getString(R.string.channel_name),
             getString(R.string.channel_description),

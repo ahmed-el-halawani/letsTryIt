@@ -5,7 +5,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.newcore.letstryit.R
 import com.newcore.letstryit.ui.MainActivity
-import com.newcore.letstryit.util.serviceHelper.MyAppsNotificationManager
+import com.newcore.letstryit.util.serviceHelper.NotificationManagerHelper
 
 data class MyMessage(val title: String, val message: String)
 
@@ -27,7 +27,7 @@ class MyFirebaseCloudMassageService : FirebaseMessagingService() {
 
 
         message.notification?.let {
-            MyAppsNotificationManager.getInstance(applicationContext)!!.triggerNotification(
+            NotificationManagerHelper(applicationContext).triggerNotification(
                 MainActivity::class.java,
                 applicationContext.getString(R.string.channel_id),
                 it.title,

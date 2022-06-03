@@ -44,7 +44,7 @@
         android:id="@+id/homeFragment"
         android:name="com.newcore.letstryit.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_intent_infos">
+        tools:layout="@layout/fragment_buttons_adapter">
 
         <action
             android:id="@+id/action_homeFragment_to_registerFragment"
@@ -58,6 +58,12 @@
         <action
             android:id="@+id/action_homeFragment_to_intentInfosFragment"
             app:destination="@id/intentInfosFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_serviceTypesFragment"
+            app:destination="@id/serviceTypesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_motionLayoutExampleFragment"
+            app:destination="@id/motionLayoutExampleFragment" />
     </fragment>
     <fragment
         android:id="@+id/showAccountsDataFragment"
@@ -78,5 +84,13 @@
         android:id="@+id/intentInfosFragment"
         android:name="com.newcore.letstryit.ui.intent.IntentInfosFragment"
         android:label="IntentInfosFragment"
-        tools:layout="@layout/fragment_intent_infos" />
+        tools:layout="@layout/fragment_buttons_adapter" />
+    <fragment
+        android:id="@+id/serviceTypesFragment"
+        android:name="com.newcore.letstryit.ui.backgroundservice.ServiceTypesFragment"
+        android:label="ServiceTypesFragment" />
+    <fragment
+        android:id="@+id/motionLayoutExampleFragment"
+        android:name="com.newcore.letstryit.ui.motionlayout.MotionLayoutExampleFragment"
+        android:label="MotionLayoutExampleFragment" />
 </navigation>

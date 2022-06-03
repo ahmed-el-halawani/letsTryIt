@@ -1,6 +1,6 @@
 package com.newcore.letstryit.util.serviceHelper
 
-import android.annotation.SuppressLint
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -8,13 +8,15 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.location.LocationManager
+import androidx.annotation.DrawableRes
+import androidx.annotation.IntDef
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.location.LocationManagerCompat
 import com.newcore.letstryit.R
+import java.util.*
 
 
-internal class MyAppsNotificationManager private constructor(val context: Context) {
+internal class NotificationManagerHelper constructor(val context: Context) {
     private val notificationManagerCompat: NotificationManagerCompat =
         NotificationManagerCompat.from(context)
 
@@ -29,9 +31,66 @@ internal class MyAppsNotificationManager private constructor(val context: Contex
             NotificationManager.IMPORTANCE_DEFAULT)
         notificationChannel.description = channelDescription
 
-        val z = context.getSystemService(LocationManager::class.java)  as LocationManager
+        val z = context.getSystemService(LocationManager::class.java) as LocationManager
 
         notificationManagerCompat.createNotificationChannel(notificationChannel)
+    }
+
+    @IntDef(NotificationCompat.PRIORITY_DEFAULT,
+        NotificationCompat.PRIORITY_HIGH,
+        NotificationCompat.PRIORITY_LOW)
+    annotation class NotificationPriority
+
+    fun notificationBuilder(
+        channelId: String,
+        title: String? = null,
+        text: String? = null,
+        targetNotificationActivity: Class<*>? = null,
+        bigText: String? = null,
+        autoCancel: Boolean = false,
+        @NotificationPriority priority: Int = NotificationCompat.PRIORITY_DEFAULT,
+        @DrawableRes smallIcon: Int = R.drawable.ic_notification,
+        @DrawableRes largeIcon: Int = R.drawable.ic_notification,
+    ): NotificationCompat.Builder {
+        var pendingIntent: PendingIntent? = null
+        if (targetNotificationActivity != null) {
+            val intent = Intent(context, targetNotificationActivity)
+            intent.putExtra("count", title)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        }
+
+        val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(smallIcon)
+            .setLargeIcon(BitmapFactory.decodeResource(context.resources, largeIcon))
+            .setContentTitle(title)
+            .setContentText(text)
+            .setPriority(priority)
+            .setContentIntent(pendingIntent)
+            .setChannelId(channelId)
+            .setAutoCancel(autoCancel)
+
+
+        if (bigText != null)
+            builder.setStyle(NotificationCompat.BigTextStyle().bigText(bigText))
+
+        return builder;
+
+    }
+
+    fun basicNotification(
+        channelId: String,
+        title: String?,
+        text: String?,
+        bigText: String?,
+    ) {
+        val notification: Notification = notificationBuilder(
+            channelId,
+            title,
+            text,
+            bigText = bigText,
+        ).build()
+        notificationManagerCompat.notify(Random().nextInt(), notification)
     }
 
     fun triggerNotification(
@@ -63,17 +122,6 @@ internal class MyAppsNotificationManager private constructor(val context: Contex
 
     fun cancelNotification(notificationId: Int) {
         notificationManagerCompat.cancel(notificationId)
-    }
-
-    companion object {
-        @SuppressLint("StaticFieldLeak")
-        private var instance: MyAppsNotificationManager? = null
-        fun getInstance(context: Context): MyAppsNotificationManager? {
-            if (instance == null) {
-                instance = MyAppsNotificationManager(context)
-            }
-            return instance
-        }
     }
 
 }

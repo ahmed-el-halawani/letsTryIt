@@ -14,10 +14,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.core.adapters.ButtonsAdapter
-import com.newcore.letstryit.core.adapters.IntentButton
-import com.newcore.letstryit.databinding.FragmentIntentInfosBinding
+import com.newcore.letstryit.core.adapters.ElevatedButton
+import com.newcore.letstryit.databinding.FragmentButtonsAdapterBinding
 
-class HomeFragment : BaseFragment<FragmentIntentInfosBinding>(FragmentIntentInfosBinding::inflate) {
+class HomeFragment :
+    BaseFragment<FragmentButtonsAdapterBinding>(FragmentButtonsAdapterBinding::inflate) {
 
     private val buttonsAdapter by lazy { ButtonsAdapter() }
 
@@ -47,7 +48,6 @@ class HomeFragment : BaseFragment<FragmentIntentInfosBinding>(FragmentIntentInfo
 
         Log.e("locationManagerTest", "providers: $providers")
         Log.e("locationManagerTest", "currentLocation: $currentLocation")
-
         showToast("providers: $providers \n currentLocation: $currentLocation")
     }
 
@@ -74,7 +74,7 @@ class HomeFragment : BaseFragment<FragmentIntentInfosBinding>(FragmentIntentInfo
 
 
         buttonsAdapter.items = listOf(
-            IntentButton(
+            ElevatedButton(
                 name = "Login",
                 onClick = {
                     findNavController().navigate(
@@ -82,7 +82,7 @@ class HomeFragment : BaseFragment<FragmentIntentInfosBinding>(FragmentIntentInfo
                     )
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "Register",
                 onClick = {
                     findNavController().navigate(
@@ -90,7 +90,7 @@ class HomeFragment : BaseFragment<FragmentIntentInfosBinding>(FragmentIntentInfo
                     )
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "Content Provider",
                 onClick = {
                     findNavController().navigate(
@@ -98,7 +98,7 @@ class HomeFragment : BaseFragment<FragmentIntentInfosBinding>(FragmentIntentInfo
                     )
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "Intent Infos",
                 onClick = {
                     findNavController().navigate(
@@ -107,10 +107,26 @@ class HomeFragment : BaseFragment<FragmentIntentInfosBinding>(FragmentIntentInfo
                 }
             ),
 
-            IntentButton(
+            ElevatedButton(
                 name = "Location manager Test",
                 onClick = {
                     getMyLocation()
+                }
+            ),
+            ElevatedButton(
+                name = "Service Types",
+                onClick = {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToServiceTypesFragment()
+                    )
+                }
+            ),
+            ElevatedButton(
+                name = "Motion layout",
+                onClick = {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToMotionLayoutExampleFragment()
+                    )
                 }
             ),
         )

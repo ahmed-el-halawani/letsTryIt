@@ -11,11 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.core.adapters.ButtonsAdapter
-import com.newcore.letstryit.core.adapters.IntentButton
-import com.newcore.letstryit.databinding.FragmentIntentInfosBinding
+import com.newcore.letstryit.core.adapters.ElevatedButton
+import com.newcore.letstryit.databinding.FragmentButtonsAdapterBinding
 
 class IntentInfosFragment :
-    BaseFragment<FragmentIntentInfosBinding>(FragmentIntentInfosBinding::inflate) {
+    BaseFragment<FragmentButtonsAdapterBinding>(FragmentButtonsAdapterBinding::inflate) {
 
     private val vm: IntentInfosFragmentViewModel by viewModels()
 
@@ -31,7 +31,7 @@ class IntentInfosFragment :
         setupAdapter()
 
         buttonsAdapter.items = listOf(
-            IntentButton(
+            ElevatedButton(
                 name = "Action View",
                 description = "show google website",
                 onClick = {
@@ -41,7 +41,7 @@ class IntentInfosFragment :
                     }
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "Action View",
                 description = "show contents",
                 onClick = {
@@ -51,7 +51,7 @@ class IntentInfosFragment :
                     }
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "ACTION DIAL",
                 description = "tell number",
                 onClick = {
@@ -65,7 +65,7 @@ class IntentInfosFragment :
                     }
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "ACTION VIEW",
                 description = "tell number",
                 onClick = {
@@ -79,7 +79,7 @@ class IntentInfosFragment :
                     }
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "ACTION VIEW",
                 description = "show contact One",
                 onClick = {
@@ -93,7 +93,7 @@ class IntentInfosFragment :
                     }
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "ACTION VIEW",
                 description = "open on splited window",
                 onClick = {
@@ -107,7 +107,7 @@ class IntentInfosFragment :
                     }
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "ACTION MAIN",
                 description = "open main",
                 onClick = {
@@ -122,7 +122,7 @@ class IntentInfosFragment :
                     }
                 }
             ),
-            IntentButton(
+            ElevatedButton(
                 name = "go To Intent Tag Test",
                 description = "Explicit",
                 onClick = {
