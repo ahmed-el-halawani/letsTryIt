@@ -5,9 +5,9 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.newcore.letstryit.core.BaseFragment
-import com.newcore.letstryit.core.adapters.ButtonsAdapter
-import com.newcore.letstryit.core.adapters.ElevatedButton
-import com.newcore.letstryit.core.adapters.TableRowData
+import com.newcore.letstryit.core.util.adapters.ButtonsAdapter
+import com.newcore.letstryit.core.util.adapters.ElevatedButton
+import com.newcore.letstryit.core.util.adapters.TableRowData
 import com.newcore.letstryit.databinding.FragmentButtonsAdapterBinding
 import com.newcore.letstryit.ui.showtabledata.ShowTableDataFragmentDirections
 

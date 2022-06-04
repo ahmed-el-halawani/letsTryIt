@@ -4,7 +4,7 @@ import android.app.job.JobParameters
 import android.app.job.JobService
 import android.util.Log
 import com.newcore.letstryit.R
-import com.newcore.letstryit.util.serviceHelper.NotificationManagerHelper
+import com.newcore.letstryit.core.util.serviceHelper.NotificationManagerHelper
 import kotlinx.coroutines.*
 
 class ExampleJobService : JobService() {

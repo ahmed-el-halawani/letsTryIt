@@ -5,14 +5,14 @@ import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.newcore.letstryit.R
-import com.newcore.letstryit.model.entites.Account
-import com.newcore.letstryit.model.local.prefrence.MySettingsSharedPreference
-import com.newcore.letstryit.model.repositories.AccountRepo
-import com.newcore.letstryit.model.repositories.AuthenticationFacade
-import com.newcore.letstryit.model.repositories.SettingsSharedPreferenceRepo
-import com.newcore.letstryit.util.Either
-import com.newcore.letstryit.util.exceptions.SomethingWrongHappened
-import com.newcore.letstryit.util.exceptions.UserAlreadyExist
+import com.newcore.letstryit.data.entites.Account
+import com.newcore.letstryit.data.local.prefrence.MySettingsSharedPreference
+import com.newcore.letstryit.data.repositories.AccountRepo
+import com.newcore.letstryit.data.repositories.AuthenticationFacade
+import com.newcore.letstryit.data.repositories.SettingsSharedPreferenceRepo
+import com.newcore.letstryit.core.util.Either
+import com.newcore.letstryit.core.util.exceptions.SomethingWrongHappened
+import com.newcore.letstryit.core.util.exceptions.UserAlreadyExist
 
 class RegisterFragmentViewModel(val app: Application) : AndroidViewModel(app) {
     private val settingsSharedPreference = SettingsSharedPreferenceRepo(

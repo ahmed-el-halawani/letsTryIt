@@ -8,9 +8,9 @@ import androidx.navigation.fragment.findNavController
 import com.newcore.letstryit.R
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentLoginBinding
-import com.newcore.letstryit.util.extentions.EditTextExtensions.onTextChange
-import com.newcore.letstryit.util.formvalidator.EmailValidator
-import com.newcore.letstryit.util.formvalidator.PasswordValidator
+import com.newcore.letstryit.core.util.extentions.EditTextExtensions.onTextChange
+import com.newcore.letstryit.core.util.formvalidator.EmailValidator
+import com.newcore.letstryit.core.util.formvalidator.PasswordValidator
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 

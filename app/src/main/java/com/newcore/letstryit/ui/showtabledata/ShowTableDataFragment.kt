@@ -2,11 +2,10 @@ package com.newcore.letstryit.ui.showtabledata
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newcore.letstryit.core.BaseFragment
-import com.newcore.letstryit.core.adapters.TableAdapter
+import com.newcore.letstryit.core.util.adapters.TableAdapter
 import com.newcore.letstryit.databinding.FragmentShowDataAdapterBinding
 
 class ShowTableDataFragment :

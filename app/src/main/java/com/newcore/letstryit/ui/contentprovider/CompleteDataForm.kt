@@ -1,6 +1,6 @@
 package com.newcore.letstryit.ui.contentprovider
 
-import com.newcore.letstryit.util.formvalidator.*
+import com.newcore.letstryit.core.util.formvalidator.*
 
 data class CompleteDataForm(
     var phoneNumberValidator: PhoneNumberValidator = PhoneNumberValidator(),

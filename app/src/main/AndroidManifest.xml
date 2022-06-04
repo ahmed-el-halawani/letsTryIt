@@ -52,7 +52,7 @@
         </activity>
 
         <provider
-            android:name=".model.local.contentprovider.MyContentProvider"
+            android:name=".data.local.contentprovider.MyContentProvider"
             android:authorities="com.newcore.letstryit.provider.mysql"
             android:exported="true"
             android:readPermission="com.newcore.letstryit.permission.read"

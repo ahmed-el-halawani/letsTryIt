@@ -6,13 +6,13 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.newcore.letstryit.R
-import com.newcore.letstryit.model.local.prefrence.MySettingsSharedPreference
-import com.newcore.letstryit.model.repositories.AccountRepo
-import com.newcore.letstryit.model.repositories.AuthenticationFacade
-import com.newcore.letstryit.model.repositories.SettingsSharedPreferenceRepo
-import com.newcore.letstryit.util.Either
-import com.newcore.letstryit.util.exceptions.InValidEmailOrPassword
-import com.newcore.letstryit.util.exceptions.SomethingWrongHappened
+import com.newcore.letstryit.data.local.prefrence.MySettingsSharedPreference
+import com.newcore.letstryit.data.repositories.AccountRepo
+import com.newcore.letstryit.data.repositories.AuthenticationFacade
+import com.newcore.letstryit.data.repositories.SettingsSharedPreferenceRepo
+import com.newcore.letstryit.core.util.Either
+import com.newcore.letstryit.core.util.exceptions.InValidEmailOrPassword
+import com.newcore.letstryit.core.util.exceptions.SomethingWrongHappened
 
 class LoginViewModel(val app: Application) : AndroidViewModel(app) {
 

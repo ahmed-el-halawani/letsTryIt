@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.newcore.letstryit.databinding.ComponentDataTileBinding
-import com.newcore.letstryit.model.entites.User
+import com.newcore.letstryit.data.entites.User
 
 class ShowDataAdapter(private val items: List<User>) :
     RecyclerView.Adapter<ShowDataAdapter.DataAdapterViewHolder>() {

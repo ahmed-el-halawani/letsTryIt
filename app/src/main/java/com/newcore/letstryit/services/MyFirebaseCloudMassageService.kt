@@ -5,7 +5,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.newcore.letstryit.R
 import com.newcore.letstryit.ui.MainActivity
-import com.newcore.letstryit.util.serviceHelper.NotificationManagerHelper
+import com.newcore.letstryit.core.util.serviceHelper.NotificationManagerHelper
 
 data class MyMessage(val title: String, val message: String)
 

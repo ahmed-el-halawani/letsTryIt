@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentShowContentProviderDataBinding
-import com.newcore.letstryit.model.repositories.UserRepo
+import com.newcore.letstryit.data.repositories.UserRepo
 
 class ShowUsersDataFragment : BaseFragment<FragmentShowContentProviderDataBinding>
     (FragmentShowContentProviderDataBinding::inflate) {

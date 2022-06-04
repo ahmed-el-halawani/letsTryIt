@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.IBinder
 import com.newcore.letstryit.R
 import com.newcore.letstryit.ui.MainActivity
-import com.newcore.letstryit.util.serviceHelper.NotificationManagerHelper
+import com.newcore.letstryit.core.util.serviceHelper.NotificationManagerHelper
 
 const val FOREGROUND_SERVICE_ID = 1;
 

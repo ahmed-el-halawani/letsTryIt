@@ -6,10 +6,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentContentProvideerBinding
-import com.newcore.letstryit.util.extentions.EditTextExtensions.onTextChange
-import com.newcore.letstryit.util.formvalidator.EmailValidator
-import com.newcore.letstryit.util.formvalidator.NameValidator
-import com.newcore.letstryit.util.formvalidator.PhoneNumberValidator
+import com.newcore.letstryit.core.util.extentions.EditTextExtensions.onTextChange
+import com.newcore.letstryit.core.util.formvalidator.EmailValidator
+import com.newcore.letstryit.core.util.formvalidator.NameValidator
+import com.newcore.letstryit.core.util.formvalidator.PhoneNumberValidator
 
 class ContentProviderFragment : BaseFragment<FragmentContentProvideerBinding>
     (FragmentContentProvideerBinding::inflate) {

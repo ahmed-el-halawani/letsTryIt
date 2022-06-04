@@ -1,6 +1,6 @@
 package com.newcore.letstryit.ui.register
 
-import com.newcore.letstryit.util.formvalidator.*
+import com.newcore.letstryit.core.util.formvalidator.*
 
 data class RegisterForm(
     var emailValidator: EmailValidator = EmailValidator(),

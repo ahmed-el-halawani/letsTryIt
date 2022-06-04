@@ -13,8 +13,8 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.newcore.letstryit.core.BaseFragment
-import com.newcore.letstryit.core.adapters.ButtonsAdapter
-import com.newcore.letstryit.core.adapters.ElevatedButton
+import com.newcore.letstryit.core.util.adapters.ButtonsAdapter
+import com.newcore.letstryit.core.util.adapters.ElevatedButton
 import com.newcore.letstryit.databinding.FragmentButtonsAdapterBinding
 
 class HomeFragment :

@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import com.newcore.letstryit.databinding.ActivityMainBinding
-import com.newcore.letstryit.model.local.roomdb.SchoolDb
+import com.newcore.letstryit.data.local.roomdb.SchoolDb
 import com.newcore.letstryit.ui.home.HomeFragmentDirections
 
 class MainActivity : AppCompatActivity() {

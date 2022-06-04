@@ -3,8 +3,8 @@ package com.newcore.letstryit.ui.contentprovider
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.newcore.letstryit.model.entites.User
-import com.newcore.letstryit.model.repositories.UserRepo
+import com.newcore.letstryit.data.entites.User
+import com.newcore.letstryit.data.repositories.UserRepo
 
 class ContentProviderFragmentViewModel(application: Application) : AndroidViewModel(application) {
     private val userRepo by lazy {

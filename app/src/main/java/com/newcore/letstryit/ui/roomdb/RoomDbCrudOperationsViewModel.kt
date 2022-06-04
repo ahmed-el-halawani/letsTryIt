@@ -2,11 +2,11 @@ package com.newcore.letstryit.ui.roomdb
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.newcore.letstryit.model.entites.room.Directory
-import com.newcore.letstryit.model.entites.room.School
-import com.newcore.letstryit.model.entites.room.releations.SchoolAndDirectory
-import com.newcore.letstryit.model.local.roomdb.SchoolDb
-import com.newcore.letstryit.util.DomeData
+import com.newcore.letstryit.data.entites.room.Directory
+import com.newcore.letstryit.data.entites.room.School
+import com.newcore.letstryit.data.entites.room.releations.SchoolAndDirectory
+import com.newcore.letstryit.data.local.roomdb.SchoolDb
+import com.newcore.letstryit.core.util.DomeData
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -93,11 +93,11 @@ class RoomDbCrudOperationsViewModel(val app: Application) : AndroidViewModel(app
     }
 
 
-    fun generateSchoolName(): String {
+    private fun generateSchoolName(): String {
         return DomeData.schoolsName.random()
     }
 
-    fun generateHumanName(): String {
+    private fun generateHumanName(): String {
         return DomeData.parentsNames.random()
     }
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewbinding.ViewBinding
-import com.newcore.letstryit.core.adapters.ButtonsAdapter
+import com.newcore.letstryit.core.util.adapters.ButtonsAdapter
 import com.newcore.letstryit.databinding.FragmentButtonsAdapterBinding
 import com.newcore.letstryit.ui.MainActivity
 

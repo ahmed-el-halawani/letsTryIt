@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.newcore.letstryit.core.BaseFragment
-import com.newcore.letstryit.core.adapters.ButtonsAdapter
-import com.newcore.letstryit.core.adapters.ElevatedButton
+import com.newcore.letstryit.core.util.adapters.ButtonsAdapter
+import com.newcore.letstryit.core.util.adapters.ElevatedButton
 import com.newcore.letstryit.databinding.FragmentButtonsAdapterBinding
 
 class IntentInfosFragment :
