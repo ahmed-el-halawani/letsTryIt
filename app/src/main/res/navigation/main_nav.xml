@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_homeFragment_to_motionLayoutExampleFragment"
             app:destination="@id/motionLayoutExampleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_roomDbCrudOperations"
+            app:destination="@id/roomDbCrudOperations" />
     </fragment>
     <fragment
         android:id="@+id/showAccountsDataFragment"
@@ -93,4 +96,20 @@
         android:id="@+id/motionLayoutExampleFragment"
         android:name="com.newcore.letstryit.ui.motionlayout.MotionLayoutExampleFragment"
         android:label="MotionLayoutExampleFragment" />
+    <fragment
+        android:id="@+id/roomDbCrudOperations"
+        android:name="com.newcore.letstryit.ui.roomdb.RoomDbCrudOperations"
+        android:label="RoomDbCrudOperations"
+        tools:layout="@layout/fragment_buttons_adapter" />
+    <fragment
+        android:id="@+id/showTableDataFragment"
+        android:name="com.newcore.letstryit.ui.showtabledata.ShowTableDataFragment"
+        android:label="ShowTableDataFragment" >
+        <argument
+            android:name="header"
+            app:argType="com.newcore.letstryit.core.adapters.TableRowData" />
+        <argument
+            android:name="data"
+            app:argType="com.newcore.letstryit.core.adapters.TableRowData[]" />
+    </fragment><action android:id="@+id/action_global_showTableDataFragment" app:destination="@id/showTableDataFragment"/>
 </navigation>

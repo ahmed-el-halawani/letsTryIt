@@ -129,6 +129,14 @@ class HomeFragment :
                     )
                 }
             ),
+            ElevatedButton(
+                name = "Room db",
+                onClick = {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToRoomDbCrudOperations()
+                    )
+                }
+            ),
         )
 
 
