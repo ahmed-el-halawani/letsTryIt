@@ -2,7 +2,7 @@
 
 this project for learning more about android its libs and core components
 
-### Download app from [Release](https://github.com/ahmedgomaa97/letsTryIt/releases/tag/1.0)
+### Download app from [Release 1.1](https://github.com/ahmedgomaa97/letsTryIt/releases/tag/1.1)
 
 ## Current app contains
 
@@ -15,10 +15,11 @@ this project for learning more about android its libs and core components
  7- intentes tests ( tags , actions )  
  8- motion layout  
  9- foreground service    
- 10- background service    
+ 10- background service   
+ 11- roomdb ( one to one relation )   
 
 ## Working on
 
 1- dagger2  
- 2- socket.io  
- 3- roomdb
+2- socket.io  
+3- roomdb ( one to many relation & many to many relation )  
