@@ -1,17 +1,23 @@
 package com.newcore.letstryit.core.util.formvalidator2
 
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.annotation.IdRes
 import androidx.core.widget.doOnTextChanged
+import com.newcore.letstryit.core.util.formvalidator2.enums.CheckFieldsMode
+import com.newcore.letstryit.core.util.formvalidator2.enums.InputTextClass
 
 
 data class MyFormField(
     @IdRes val id: Int,
-    val layoutView: View,
     private val validatorsBuild: ValidatorsBuild,
+    private val inputTypeClass: InputTextClass? = null,
+    private val inputTypeTransformation: Int? = null,
     private val onTextChange: ((MyFormField) -> Unit)? = null,
 ) {
+
+    private val TAG = "MyFormField"
 
     var value: String = ""
         private set
@@ -20,10 +26,6 @@ data class MyFormField(
     var message: ValidatorResult = ValidatorResult.Success()
         private set
 
-    fun updateView(layoutView: View) {
-        field = layoutView.findViewById(id)
-        listener()
-    }
 
     fun isValid(): Boolean = message is ValidatorResult.Success
 
@@ -40,8 +42,22 @@ data class MyFormField(
             field.error = message.stringMessage
     }
 
+    fun updateView(layoutView: View) {
+        field = layoutView.findViewById<EditText?>(id).apply {
+            inputTypeClass?.let {
+                inputType = it.classType
+            }
 
-    private var field: EditText
+            inputTypeTransformation?.let {
+                inputType = inputType or (it)
+            }
+
+            Log.e(TAG, "inputField: $inputType")
+        }
+        listener()
+    }
+
+    private lateinit var field: EditText
 
     private var showError: Boolean = true
         set(value) {
@@ -55,11 +71,6 @@ data class MyFormField(
             checkForErrors()
             onTextChange?.invoke(this);
         }
-    }
-
-    init {
-        field = layoutView.findViewById(id)
-        listener()
     }
 
 

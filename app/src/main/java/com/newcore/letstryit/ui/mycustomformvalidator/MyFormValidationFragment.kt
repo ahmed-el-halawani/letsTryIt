@@ -6,9 +6,9 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.newcore.letstryit.core.BaseFragment
-import com.newcore.letstryit.core.util.formvalidator2.CheckFieldsMode
-import com.newcore.letstryit.core.util.formvalidator2.InputTextClass
 import com.newcore.letstryit.core.util.formvalidator2.MyFormField
+import com.newcore.letstryit.core.util.formvalidator2.enums.CheckFieldsMode
+import com.newcore.letstryit.core.util.formvalidator2.enums.InputTextClass
 import com.newcore.letstryit.core.util.formvalidator2.validators.emailValidator
 import com.newcore.letstryit.core.util.formvalidator2.validators.emptyValidator
 import com.newcore.letstryit.core.util.formvalidator2.validators.numberValidator

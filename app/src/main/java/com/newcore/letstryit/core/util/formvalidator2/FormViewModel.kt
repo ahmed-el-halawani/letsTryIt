@@ -11,12 +11,13 @@ class FormViewModel : ViewModel() {
 fun Fragment.vmForm(myForm: MyForm.() -> Unit): MyForm {
     val vm: FormViewModel by viewModels()
     if (vm.myForm == null) {
-        val form = MyForm(this.requireView())
-        myForm(form)
-        form.start()
-        vm.myForm = form
+        MyForm().apply {
+            myForm(this)
+            start(requireView())
+            vm.myForm = this
+        }
     } else {
-        vm.myForm!!.updateView(this.requireView())
+        vm.myForm!!.start(this.requireView())
     }
 
     return vm.myForm!!

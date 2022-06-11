@@ -2,12 +2,6 @@ package com.newcore.letstryit.core.util.formvalidator2
 
 import com.newcore.letstryit.core.util.formvalidator2.validators.EmptyValidator
 
-interface IValidator {
-    fun validate(value: String?): ValidatorResult
-
-
-}
-
 data class ValidatorsBuild(
     val validatorsList: MutableList<IValidator> = mutableListOf(EmptyValidator()),
 ) {
