@@ -16,10 +16,13 @@ this project for learning more about android its libs and core components
  8- motion layout  
  9- foreground service    
  10- background service   
- 11- roomdb ( one to one relation )   
+ 11- roomdb ( one to one relation )     
+ 12- new form validation system powerfull and easy to use ( edit texts only for now )
 
 ## Working on
 
 1- dagger2  
 2- socket.io  
-3- roomdb ( one to many relation & many to many relation )  
+3- roomdb ( one to many relation & many to many relation )    
+4- new form validation system powerfull and easy to use ( spanner, checkbuttons , more validators, adapter to create ur custom validators and fields )
+
