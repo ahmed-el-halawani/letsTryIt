@@ -2,7 +2,7 @@
 
 this project for learning more about android its libs and core components
 
-### Download app from [Release 1.1](https://github.com/ahmedgomaa97/letsTryIt/releases/tag/1.1)
+### Download app from [Release 1.2](https://github.com/ahmedgomaa97/letsTryIt/releases/tag/1.2)
 
 ## Current app contains
 
