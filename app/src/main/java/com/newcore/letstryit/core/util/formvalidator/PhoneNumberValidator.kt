@@ -1,5 +1,6 @@
 package com.newcore.letstryit.core.util.formvalidator
 
+
 class PhoneNumberValidator(phoneNumber: String? = null) : FieldValidator<String>(phoneNumber) {
 
     init {

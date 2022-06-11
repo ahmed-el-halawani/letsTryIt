@@ -1,5 +1,6 @@
 package com.newcore.letstryit.core.util.formvalidator
 
+
 class PasswordValidator(value: String? = null) : FieldValidator<String>(value) {
     init {
         checkValidation()

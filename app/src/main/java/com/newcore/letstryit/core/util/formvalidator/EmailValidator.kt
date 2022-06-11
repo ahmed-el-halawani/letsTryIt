@@ -1,5 +1,6 @@
 package com.newcore.letstryit.core.util.formvalidator
 
+
 class EmailValidator(email: String? = null) : FieldValidator<String>(email) {
     init {
         checkValidation()

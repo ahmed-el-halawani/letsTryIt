@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.newcore.letstryit.ui.home.HomeFragment"
+        android:name="com.newcore.letstryit.ui.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_buttons_adapter">
 
@@ -67,6 +67,12 @@
         <action
             android:id="@+id/action_homeFragment_to_roomDbCrudOperations"
             app:destination="@id/roomDbCrudOperations" />
+        <action
+            android:id="@+id/action_homeFragment_to_formValidationFragment"
+            app:destination="@id/formValidationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myFormValidationFragment"
+            app:destination="@id/myFormValidationFragment" />
     </fragment>
     <fragment
         android:id="@+id/showAccountsDataFragment"
@@ -107,9 +113,17 @@
         android:label="ShowTableDataFragment" >
         <argument
             android:name="header"
-            app:argType="com.newcore.letstryit.core.adapters.TableRowData" />
+            app:argType="com.newcore.letstryit.core.util.adapters.TableRowData" />
         <argument
             android:name="data"
-            app:argType="com.newcore.letstryit.core.adapters.TableRowData[]" />
+            app:argType="com.newcore.letstryit.core.util.adapters.TableRowData[]" />
     </fragment><action android:id="@+id/action_global_showTableDataFragment" app:destination="@id/showTableDataFragment"/>
+    <fragment
+        android:id="@+id/formValidationFragment"
+        android:name="com.newcore.letstryit.ui.formvalidations.FormValidationFragment"
+        android:label="FormValidationFragment" />
+    <fragment
+        android:id="@+id/myFormValidationFragment"
+        android:name="com.newcore.letstryit.ui.mycustomformvalidator.MyFormValidationFragment"
+        android:label="MyFormValidationFragment" />
 </navigation>

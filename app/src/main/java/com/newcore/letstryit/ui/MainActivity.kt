@@ -3,10 +3,9 @@ package com.newcore.letstryit.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.navigation.findNavController
+import androidx.navigation.NavHost
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.newcore.letstryit.databinding.ActivityMainBinding
-import com.newcore.letstryit.data.local.roomdb.SchoolDb
-import com.newcore.letstryit.ui.home.HomeFragmentDirections
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,19 +13,26 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private val navController by lazy {
+        (supportFragmentManager.findFragmentById(binding.navHost.id) as NavHost).navController
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
-        SchoolDb.getInstance(this)
-
+        setupActionBarWithNavController(navController)
 
         binding.button.setOnClickListener {
-            binding.navHost.findNavController().navigate(
+            navController.navigate(
                 HomeFragmentDirections.actionGlobalHomeFragment()
             )
         }
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
 

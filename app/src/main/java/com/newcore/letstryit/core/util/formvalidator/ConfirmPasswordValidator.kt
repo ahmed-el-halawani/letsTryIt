@@ -1,5 +1,6 @@
 package com.newcore.letstryit.core.util.formvalidator
 
+
 class ConfirmPasswordValidator(value: String? = null, private val password: String? = null) :
     FieldValidator<String>(value) {
     init {

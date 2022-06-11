@@ -1,4 +1,4 @@
-package com.newcore.letstryit.ui.home
+package com.newcore.letstryit.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -134,6 +134,22 @@ class HomeFragment :
                 onClick = {
                     findNavController().navigate(
                         HomeFragmentDirections.actionHomeFragmentToRoomDbCrudOperations()
+                    )
+                }
+            ),
+            ElevatedButton(
+                name = "Form validation",
+                onClick = {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToFormValidationFragment()
+                    )
+                }
+            ),
+            ElevatedButton(
+                name = "My Form validation",
+                onClick = {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToMyFormValidationFragment()
                     )
                 }
             ),
