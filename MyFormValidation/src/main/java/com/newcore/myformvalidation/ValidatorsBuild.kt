@@ -1,6 +1,7 @@
-package com.newcore.letstryit.core.util.formvalidator2
+package com.newcore.myformvalidation
 
-import com.newcore.letstryit.core.util.formvalidator2.validators.EmptyValidator
+import com.newcore.myformvalidation.validators.EmptyValidator
+
 
 data class ValidatorsBuild(
     val validatorsList: MutableList<IValidator> = mutableListOf(EmptyValidator()),

@@ -6,14 +6,14 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.newcore.letstryit.core.BaseFragment
-import com.newcore.letstryit.core.util.formvalidator2.MyFormField
-import com.newcore.letstryit.core.util.formvalidator2.enums.CheckFieldsMode
-import com.newcore.letstryit.core.util.formvalidator2.enums.InputTextClass
-import com.newcore.letstryit.core.util.formvalidator2.validators.emailValidator
-import com.newcore.letstryit.core.util.formvalidator2.validators.emptyValidator
-import com.newcore.letstryit.core.util.formvalidator2.validators.numberValidator
-import com.newcore.letstryit.core.util.formvalidator2.vmForm
 import com.newcore.letstryit.databinding.FragmentFormValidationBinding
+import com.newcore.myformvalidation.MyFormField
+import com.newcore.myformvalidation.enums.CheckFieldsMode
+import com.newcore.myformvalidation.enums.InputTextClass
+import com.newcore.myformvalidation.validators.emailValidator
+import com.newcore.myformvalidation.validators.emptyValidator
+import com.newcore.myformvalidation.validators.numberValidator
+import com.newcore.myformvalidation.vmForm
 
 class MyFormValidationFragment :
     BaseFragment<FragmentFormValidationBinding>(FragmentFormValidationBinding::inflate) {
@@ -32,11 +32,14 @@ class MyFormValidationFragment :
             checkFieldsMode(CheckFieldsMode.AfterFirstSubmit)
 
             email = inputField(binding.etEmail) {
-                emptyValidator("hi")
+                emptyValidator()
                 emailValidator()
             }
 
-            number = inputField(binding.etNumber, inputTypeClass = InputTextClass.Number) {
+            number = inputField(
+                binding.etNumber,
+                inputTypeClass = InputTextClass.Number,
+            ) {
                 numberValidator { "number only" }
             }
 
@@ -47,7 +50,16 @@ class MyFormValidationFragment :
 
             username = inputField(binding.etUserName)
 
+            checkField(binding.checkBox) {
+                customMessage = "must not be empty"
+            }
+
             submitButton(binding.btnSubmit)
+        }
+
+
+        binding.swchWithEmail.setOnClickListener {
+            email.isOptional = binding.swchWithEmail.isChecked
         }
 
         form.onChangeListener { s, myForm ->
@@ -63,10 +75,10 @@ class MyFormValidationFragment :
         }
 
         form.onValidForm {
-            Log.e(TAG, "email: ${email.value}")
-            Log.e(TAG, "password: ${password.value}")
-            Log.e(TAG, "username: ${username.value}")
-            Log.e(TAG, "number: ${it?.getField(binding.etNumber)?.value}")
+            Log.e(TAG, "email: ${email.getValue()}")
+            Log.e(TAG, "password: ${password.getValue()}")
+            Log.e(TAG, "username: ${username.getValue()}")
+            Log.e(TAG, "number: ${it?.getField(binding.etNumber)?.getValue()}")
         }
 
     }

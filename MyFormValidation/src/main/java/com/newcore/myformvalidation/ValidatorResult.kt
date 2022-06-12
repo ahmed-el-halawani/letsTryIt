@@ -1,4 +1,4 @@
-package com.newcore.letstryit.core.util.formvalidator2
+package com.newcore.myformvalidation
 
 
 sealed class ValidatorResult(

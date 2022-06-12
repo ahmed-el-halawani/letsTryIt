@@ -1,4 +1,4 @@
-package com.newcore.letstryit.core.util.formvalidator2.enums
+package com.newcore.myformvalidation.enums
 
 import android.text.InputType
 

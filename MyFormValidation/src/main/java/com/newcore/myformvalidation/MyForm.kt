@@ -1,15 +1,17 @@
-package com.newcore.letstryit.core.util.formvalidator2
+package com.newcore.myformvalidation
 
 import android.view.View
 import android.widget.EditText
 import androidx.annotation.IdRes
-import com.newcore.letstryit.core.util.formvalidator2.enums.CheckFieldsMode
-import com.newcore.letstryit.core.util.formvalidator2.enums.InputTextClass
+import com.newcore.myformvalidation.enums.CheckFieldsMode
+import com.newcore.myformvalidation.enums.InputTextClass
+import com.newcore.myformvalidation.formfield.BaseFormField
+import com.newcore.myformvalidation.validators.IsCheckedValidator
 
-class MyForm() {
+
+class MyForm {
     fun checkFieldsMode(checkFieldsMode: CheckFieldsMode) {
         this.checkFieldsMode = checkFieldsMode
-
     }
 
     fun onChangeListener(changeListener: ((String, MyForm) -> Unit)) {
@@ -26,7 +28,7 @@ class MyForm() {
         initButton()
     }
 
-    fun onInvalidForm(inValidListener: ((MyFormField?) -> Unit)) {
+    fun onInvalidForm(inValidListener: ((BaseFormField<*, *>?) -> Unit)) {
         this.inValidListener = inValidListener
         initButton()
     }
@@ -44,33 +46,56 @@ class MyForm() {
         view: EditText,
         inputTypeClass: InputTextClass? = null,
         inputTypeTransformation: Int? = null,
-        validatorsBuild: (ValidatorsBuild .() -> Unit)? = null,
-    ): MyFormField {
-        return inputField(
-            view.id, inputTypeClass,
-            inputTypeTransformation,
-            validatorsBuild
-        )
-    }
+        isOptional: Boolean = false,
+        validatorsBuild: (ValidatorsBuild.() -> Unit)? = null,
+    ) = inputField(
+        view.id, inputTypeClass,
+        inputTypeTransformation,
+        isOptional, validatorsBuild
+    )
 
 
     fun inputField(
         @IdRes idRes: Int,
         inputTypeClass: InputTextClass? = null,
         inputTypeTransformation: Int? = null,
+        isOptional: Boolean = false,
         validatorsBuild: (ValidatorsBuild .() -> Unit)? = null,
     ): MyFormField {
         val vBuilder = ValidatorsBuild()
         validatorsBuild?.invoke(vBuilder)
 
-        val formField = MyFormField(idRes, vBuilder, inputTypeClass, inputTypeTransformation,
-            onTextChange = {
+        val formField =
+            MyFormField(idRes, vBuilder, inputTypeClass, inputTypeTransformation, isOptional) {
                 changeListener?.invoke(fields.joinToString(separator = ",") {
-                    "{key: " + it.id.toString() + " value: " + it.value + " message: " + it.message + " }"
+                    "{key: " + it.id.toString() + " value: " + it.getValue() + " message: " + it.message + " }"
                 }, this)
-            })
+            }
 
         return formField.also { fields.add(formField) }
+    }
+
+    fun checkGroup() {
+
+    }
+
+    fun checkField(
+        view: View,
+        isOptional: Boolean = false,
+        isCheckedValidator: (IsCheckedValidator.() -> Unit)? = null
+    ): IsCheckedValidator {
+        return checkField(view.id, isOptional, isCheckedValidator)
+    }
+
+    fun checkField(
+        @IdRes idRes: Int,
+        isOptional: Boolean = false,
+        isCheckedValidator: (IsCheckedValidator.() -> Unit)? = null
+    ): IsCheckedValidator {
+        val checkedValidator = IsCheckedValidator()
+        isCheckedValidator?.invoke(checkedValidator)
+        fields.add(MyFormCheckField(idRes, isOptional, checkedValidator))
+        return checkedValidator
     }
 
     private fun initButton() {
@@ -81,11 +106,7 @@ class MyForm() {
                     CheckFieldsMode.EverySubmit -> validateFieldsOnSubmit()
                 }
 
-                val invalidField = fields.firstOrNull { !it.isValid() }
-                if (invalidField == null)
-                    validListener?.invoke(this)
-                else
-                    inValidListener?.invoke(invalidField)
+                fieldValidation()
 
                 submitListener?.invoke(this)
             }
@@ -102,22 +123,37 @@ class MyForm() {
     }
 
 
-    fun getField(view: View): MyFormField {
+    fun getField(view: View): BaseFormField<*, *> {
         return fields.firstOrNull { it.id == view.id } ?: throw Exception("field not found")
     }
 
-    fun getField(@IdRes id: Int): MyFormField {
+    fun getField(@IdRes id: Int): BaseFormField<*, *> {
         return fields.firstOrNull { it.id == id } ?: throw Exception("field not found")
     }
 
 
     private var submitListener: ((MyForm) -> Unit)? = null
     private var validListener: ((MyForm) -> Unit)? = null
-    private var inValidListener: ((MyFormField?) -> Unit)? = null
+    private var inValidListener: ((BaseFormField<*, *>?) -> Unit)? = null
     private var changeListener: ((String, MyForm) -> Unit)? = null
     private var checkFieldsMode: CheckFieldsMode = CheckFieldsMode.AfterFirstSubmit
     private var submitBtn: Int? = null
-    private val fields = mutableListOf<MyFormField>()
+    private val fields = mutableListOf<BaseFormField<*, *>>()
+
+    private fun fieldValidation() {
+        val invalidField =
+            fields.firstOrNull {
+                if (!it.isOptional)
+                    !it.isValid()
+                else
+                    false
+            }
+
+        if (invalidField == null)
+            validListener?.invoke(this)
+        else
+            inValidListener?.invoke(invalidField)
+    }
 
     private fun changeShowErrorStateInFields() {
         checkFieldsMode = CheckFieldsMode.Always
@@ -125,6 +161,6 @@ class MyForm() {
     }
 
     private fun validateFieldsOnSubmit() {
-        fields.forEach { it.checkForErrors() }
+        fields.forEach { it.isValid() }
     }
 }
