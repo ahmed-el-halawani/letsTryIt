@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
-    id 'com.google.gms.google-services'
     id 'kotlin-kapt'
 }
 
@@ -76,5 +75,7 @@ dependencies {
 
     // form validator
     implementation 'com.afollestad:vvalidator:0.5.2'
+
+    implementation project(":MyFormValidation")
 
 }

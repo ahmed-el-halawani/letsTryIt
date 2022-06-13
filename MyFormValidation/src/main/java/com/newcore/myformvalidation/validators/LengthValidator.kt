@@ -1,9 +1,9 @@
-package com.newcore.letstryit.core.util.formvalidator2.validators
+package com.newcore.myformvalidation.validators
 
-import com.newcore.letstryit.core.util.formvalidator2.IValidator
-import com.newcore.letstryit.core.util.formvalidator2.ValidatorResult
-import com.newcore.letstryit.core.util.formvalidator2.ValidatorResultCodes
-import com.newcore.letstryit.core.util.formvalidator2.ValidatorsBuild
+import com.newcore.myformvalidation.IValidator
+import com.newcore.myformvalidation.ValidatorResult
+import com.newcore.myformvalidation.ValidatorResultCodes
+import com.newcore.myformvalidation.ValidatorsBuild
 
 class LengthValidator(
     val lowerBound: Int,
@@ -13,12 +13,15 @@ class LengthValidator(
 ) : IValidator {
     override fun validate(value: String?): ValidatorResult {
         if (value!!.toString().length > upperBound)
-            return ValidatorResult.Failure(ValidatorResultCodes.MoreThanUpper,
+            return ValidatorResult.Failure(
+                ValidatorResultCodes.MoreThanUpper,
                 customMessageUpper?.invoke(value) ?: "must be lower than $upperBound"
             )
         if (value.toString().length < lowerBound)
-            return ValidatorResult.Failure(ValidatorResultCodes.LessThanLower,
-                customMessageLower?.invoke(value) ?: "must be greater than $lowerBound")
+            return ValidatorResult.Failure(
+                ValidatorResultCodes.LessThanLower,
+                customMessageLower?.invoke(value) ?: "must be greater than $lowerBound"
+            )
         return ValidatorResult.Success()
     }
 }
