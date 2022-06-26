@@ -41,6 +41,8 @@ class MyForm {
         this.submitBtn = submitBtn.id
     }
 
+    var setOnChangeErrorCheck: ((checkErrorState: CheckFieldsMode) -> Unit)? = null
+
 
     fun inputField(
         view: EditText,
@@ -137,6 +139,10 @@ class MyForm {
     private var inValidListener: ((BaseFormField<*, *>?) -> Unit)? = null
     private var changeListener: ((String, MyForm) -> Unit)? = null
     private var checkFieldsMode: CheckFieldsMode = CheckFieldsMode.AfterFirstSubmit
+        set(value) {
+            field = value
+            setOnChangeErrorCheck?.invoke(value)
+        }
     private var submitBtn: Int? = null
     private val fields = mutableListOf<BaseFormField<*, *>>()
 

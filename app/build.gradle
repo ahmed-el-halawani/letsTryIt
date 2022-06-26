@@ -76,7 +76,11 @@ dependencies {
     // form validator
     implementation 'com.afollestad:vvalidator:0.5.2'
 
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
+
     implementation project(":MyFormValidation")
+
+
 
 
 }
