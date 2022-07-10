@@ -5,7 +5,6 @@ import android.text.InputType
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
-import com.afollestad.vvalidator.form
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentFormValidationBinding
 import com.newcore.myformvalidation.MyFormField

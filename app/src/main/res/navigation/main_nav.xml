@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_homeFragment_to_myFormValidationFragment"
             app:destination="@id/myFormValidationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_flatListTestFragment"
+            app:destination="@id/flatListTestFragment" />
     </fragment>
     <fragment
         android:id="@+id/showAccountsDataFragment"
@@ -126,4 +129,8 @@
         android:id="@+id/myFormValidationFragment"
         android:name="com.newcore.letstryit.ui.mycustomformvalidator.MyFormValidationFragment"
         android:label="MyFormValidationFragment" />
+    <fragment
+        android:id="@+id/flatListTestFragment"
+        android:name="com.newcore.letstryit.ui.newlistimpl.FlatListTestFragment"
+        android:label="FlatListTestFragment" />
 </navigation>

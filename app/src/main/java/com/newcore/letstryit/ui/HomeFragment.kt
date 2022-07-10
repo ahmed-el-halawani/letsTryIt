@@ -153,6 +153,14 @@ class HomeFragment :
                     )
                 }
             ),
+            ElevatedButton(
+                name = "My List Builder",
+                onClick = {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToFlatListTestFragment()
+                    )
+                }
+            ),
         )
 
 
