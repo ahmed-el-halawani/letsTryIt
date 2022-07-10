@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
+
 }
 
 android {
@@ -51,7 +53,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.ahmedgomaa97'
                 artifactId = 'easy-recycler-generator-ktx'
-                version = '1.0'
+                version = '3.0'
             }
         }
     }

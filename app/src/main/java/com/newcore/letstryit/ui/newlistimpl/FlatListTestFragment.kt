@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.newcore.easy_recycler_generator.destroyRvList
+import com.newcore.easy_recycler_generator.rvList
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentFlatListTestBinding
 import com.newcore.letstryit.databinding.ItemIntentInfoButtonBinding
 import com.newcore.letstryit.databinding.ItemTableRowBinding
-import com.newcore.letstryit.ui.newlistimpl.lib.destroyRvList
-import com.newcore.letstryit.ui.newlistimpl.lib.rvList
 
 class FlatListTestFragment :
     BaseFragment<FragmentFlatListTestBinding>(FragmentFlatListTestBinding::inflate) {
