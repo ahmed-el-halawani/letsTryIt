@@ -17,4 +17,3 @@ dependencyResolutionManagement {
 rootProject.name = "letsTryIt"
 include ':app'
 include ':MyFormValidation'
-include ':easy_recycler_generator'

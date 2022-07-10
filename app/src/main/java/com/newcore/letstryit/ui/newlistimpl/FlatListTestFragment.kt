@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.newcore.easy_recycler_generator.destroyRvList
-import com.newcore.easy_recycler_generator.rvList
+import com.newcore.easyrecyclergenerator.destroyRvList
+import com.newcore.easyrecyclergenerator.rvList
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentFlatListTestBinding
 import com.newcore.letstryit.databinding.ItemIntentInfoButtonBinding
@@ -16,7 +16,6 @@ class FlatListTestFragment :
 
     private val vm: FlatListTestViewModel by viewModels()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -24,7 +23,7 @@ class FlatListTestFragment :
             binding.rvList,
             GridLayoutManager(context, 3),
         ) {
-            generateViews(
+            listBuilder(
                 binding = ItemIntentInfoButtonBinding::inflate,
                 children = List(1000) { "ahmed $it" }
             ) { v, i ->
@@ -32,7 +31,7 @@ class FlatListTestFragment :
                 v.tvName.text = i
             }
 
-            generateViews(
+            listBuilder(
                 binding = ItemTableRowBinding::inflate,
                 children = List(1000) { "gomaa $it" }
             ) { v, i ->
@@ -42,20 +41,6 @@ class FlatListTestFragment :
                 v.tvColumn4.text = i
             }
         }
-
-
-        //        rvList(
-        //            binding = ItemTableRowBinding::inflate,
-        //            emptyList<String>(),
-        //            binding.rvList
-        //        ) { v, it ->
-        //            v.tvColumn1.text = it
-        //            v.tvColumn2.text = it
-        //            v.tvColumn3.text = it
-        //            v.tvColumn4.text = it
-        //        }
-
-
     }
 
     override fun onDestroy() {
