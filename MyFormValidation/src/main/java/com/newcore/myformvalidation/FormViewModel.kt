@@ -24,13 +24,13 @@ class FormViewModel {
 
 }
 
-fun Fragment.vmForm(myForm: MyForm.() -> Unit): MyForm {
+fun Fragment.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> Unit): MyForm {
     val vm = FormViewModel.getInstance(this.javaClass)
 
     if (vm.myForm == null) {
         MyForm().apply {
             myForm(this)
-            start(object : ViewContainer {
+            start(viewContainer ?: object : ViewContainer {
                 override fun <T : View> findViewById(id: Int): T =
                     requireView().findViewById(id)
 
@@ -38,7 +38,7 @@ fun Fragment.vmForm(myForm: MyForm.() -> Unit): MyForm {
             vm.myForm = this
         }
     } else {
-        vm.myForm!!.start(object : ViewContainer {
+        vm.myForm!!.start(viewContainer ?: object : ViewContainer {
             override fun <T : View> findViewById(id: Int): T =
                 requireView().findViewById(id)
 
@@ -48,13 +48,13 @@ fun Fragment.vmForm(myForm: MyForm.() -> Unit): MyForm {
     return vm.myForm!!
 }
 
-fun Activity.vmForm(myForm: MyForm.() -> Unit): MyForm {
+fun Activity.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> Unit): MyForm {
     val vm = FormViewModel.getInstance(this.javaClass)
 
     if (vm.myForm == null) {
         MyForm().apply {
             myForm(this)
-            start(object : ViewContainer {
+            start(viewContainer ?: object : ViewContainer {
                 override fun <T : View> findViewById(id: Int): T =
                     this@vmForm.findViewById(id)
 
@@ -62,7 +62,7 @@ fun Activity.vmForm(myForm: MyForm.() -> Unit): MyForm {
             vm.myForm = this
         }
     } else {
-        vm.myForm!!.start(object : ViewContainer {
+        vm.myForm!!.start(viewContainer ?: object : ViewContainer {
             override fun <T : View> findViewById(id: Int): T =
                 this@vmForm.findViewById(id)
 
