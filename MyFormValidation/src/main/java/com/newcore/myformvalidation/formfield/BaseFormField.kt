@@ -1,9 +1,9 @@
 package com.newcore.myformvalidation.formfield
 
-import android.view.View
 import android.widget.TextView
 import androidx.annotation.IdRes
 import com.newcore.myformvalidation.ValidatorResult
+import com.newcore.myformvalidation.ViewContainer
 import com.newcore.myformvalidation.enums.CheckFieldsMode
 
 abstract class BaseFormField<V : TextView, D>(
@@ -29,7 +29,7 @@ abstract class BaseFormField<V : TextView, D>(
         }
     }
 
-    open fun updateView(layoutView: View) {
+    open fun updateView(layoutView: ViewContainer) {
         field = layoutView.findViewById(id)
         initListeners()
     }

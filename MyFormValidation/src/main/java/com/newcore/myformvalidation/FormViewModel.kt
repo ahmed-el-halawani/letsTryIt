@@ -1,5 +1,7 @@
 package com.newcore.myformvalidation
 
+import android.app.Activity
+import android.view.View
 import androidx.fragment.app.Fragment
 
 class FormViewModel {
@@ -28,12 +30,48 @@ fun Fragment.vmForm(myForm: MyForm.() -> Unit): MyForm {
     if (vm.myForm == null) {
         MyForm().apply {
             myForm(this)
-            start(requireView())
+            start(object : ViewContainer {
+                override fun <T : View> findViewById(id: Int): T =
+                    requireView().findViewById(id)
+
+            })
             vm.myForm = this
         }
     } else {
-        vm.myForm!!.start(this.requireView())
+        vm.myForm!!.start(object : ViewContainer {
+            override fun <T : View> findViewById(id: Int): T =
+                requireView().findViewById(id)
+
+        })
     }
 
     return vm.myForm!!
+}
+
+fun Activity.vmForm(myForm: MyForm.() -> Unit): MyForm {
+    val vm = FormViewModel.getInstance(this.javaClass)
+
+    if (vm.myForm == null) {
+        MyForm().apply {
+            myForm(this)
+            start(object : ViewContainer {
+                override fun <T : View> findViewById(id: Int): T =
+                    this@vmForm.findViewById(id)
+
+            })
+            vm.myForm = this
+        }
+    } else {
+        vm.myForm!!.start(object : ViewContainer {
+            override fun <T : View> findViewById(id: Int): T =
+                this@vmForm.findViewById(id)
+
+        })
+    }
+
+    return vm.myForm!!
+}
+
+interface ViewContainer {
+    fun <T : View> findViewById(id: Int): T
 }

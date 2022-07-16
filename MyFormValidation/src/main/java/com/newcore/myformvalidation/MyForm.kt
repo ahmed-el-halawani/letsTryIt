@@ -84,7 +84,7 @@ class MyForm {
     fun checkField(
         view: View,
         isOptional: Boolean = false,
-        isCheckedValidator: (IsCheckedValidator.() -> Unit)? = null
+        isCheckedValidator: (IsCheckedValidator.() -> Unit)? = null,
     ): IsCheckedValidator {
         return checkField(view.id, isOptional, isCheckedValidator)
     }
@@ -92,7 +92,7 @@ class MyForm {
     fun checkField(
         @IdRes idRes: Int,
         isOptional: Boolean = false,
-        isCheckedValidator: (IsCheckedValidator.() -> Unit)? = null
+        isCheckedValidator: (IsCheckedValidator.() -> Unit)? = null,
     ): IsCheckedValidator {
         val checkedValidator = IsCheckedValidator()
         isCheckedValidator?.invoke(checkedValidator)
@@ -102,7 +102,7 @@ class MyForm {
 
     private fun initButton() {
         submitBtn?.let {
-            layoutView.findViewById<View>(it)?.setOnClickListener {
+            layoutView.findViewById<View>(it).setOnClickListener {
                 when (checkFieldsMode) {
                     CheckFieldsMode.AfterFirstSubmit, CheckFieldsMode.Always -> changeShowErrorStateInFields()
                     CheckFieldsMode.EverySubmit -> validateFieldsOnSubmit()
@@ -115,9 +115,9 @@ class MyForm {
         }
     }
 
-    private lateinit var layoutView: View
+    private lateinit var layoutView: ViewContainer
 
-    fun start(layoutView: View) {
+    fun start(layoutView: ViewContainer) {
         this.layoutView = layoutView
         fields.forEach { it.updateView(layoutView) }
         fields.forEach { it.setShowErrorState(checkFieldsMode) }

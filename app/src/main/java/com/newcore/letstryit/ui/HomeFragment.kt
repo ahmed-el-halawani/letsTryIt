@@ -161,6 +161,14 @@ class HomeFragment :
                     )
                 }
             ),
+            ElevatedButton(
+                name = "wallpaper",
+                onClick = {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToWallpaperFragment()
+                    )
+                }
+            ),
         )
 
 

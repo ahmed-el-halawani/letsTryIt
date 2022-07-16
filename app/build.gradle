@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.newcore.letstryit"
-        minSdk 26
+        minSdk 27
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -80,11 +80,10 @@ dependencies {
 
     implementation project(":MyFormValidation")
 
-    implementation 'com.github.ahmedgomaa97:EasyRecyclerGenerator:1.1'
+    implementation 'com.github.ahmedgomaa97:EasyRecyclerGenerator:1.2.1'
 
-
-
-
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    kapt 'com.github.bumptech.glide:compiler:4.13.2'
 
 
 }

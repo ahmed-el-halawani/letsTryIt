@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_homeFragment_to_flatListTestFragment"
             app:destination="@id/flatListTestFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_wallpaperFragment"
+            app:destination="@id/wallpaperFragment" />
     </fragment>
     <fragment
         android:id="@+id/showAccountsDataFragment"
@@ -133,4 +136,8 @@
         android:id="@+id/flatListTestFragment"
         android:name="com.newcore.letstryit.ui.newlistimpl.FlatListTestFragment"
         android:label="FlatListTestFragment" />
+    <fragment
+        android:id="@+id/wallpaperFragment"
+        android:name="com.newcore.letstryit.ui.wallpapers.WallpaperFragment"
+        android:label="WallpaperFragment" />
 </navigation>

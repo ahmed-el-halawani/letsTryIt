@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.newcore.easyrecyclergenerator.destroyRvList
 import com.newcore.easyrecyclergenerator.rvList
 import com.newcore.letstryit.core.BaseFragment
 import com.newcore.letstryit.databinding.FragmentFlatListTestBinding
@@ -41,11 +40,6 @@ class FlatListTestFragment :
                 v.tvColumn4.text = i
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        destroyRvList()
     }
 
 }
