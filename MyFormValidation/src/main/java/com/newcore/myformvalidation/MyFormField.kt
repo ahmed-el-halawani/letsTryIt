@@ -1,6 +1,5 @@
 package com.newcore.myformvalidation
 
-import android.view.View
 import android.widget.EditText
 import androidx.annotation.IdRes
 import androidx.core.widget.doOnTextChanged
@@ -24,7 +23,7 @@ class MyFormField(
         message = validatorsBuild.getValidationResult(value)
     }
 
-    override fun updateView(layoutView: View) {
+    override fun updateView(layoutView: ViewContainer) {
         super.updateView(layoutView)
         field.apply {
             inputTypeClass?.let {
