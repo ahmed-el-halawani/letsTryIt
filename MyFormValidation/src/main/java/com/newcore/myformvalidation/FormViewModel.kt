@@ -3,6 +3,7 @@ package com.newcore.myformvalidation
 import android.app.Activity
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.newcore.core.ViewContainer
 
 class FormViewModel {
 
@@ -70,8 +71,4 @@ fun Activity.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> U
     }
 
     return vm.myForm!!
-}
-
-interface ViewContainer {
-    fun <T : View> findViewById(id: Int): T
 }
