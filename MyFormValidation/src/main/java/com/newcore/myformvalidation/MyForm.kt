@@ -1,6 +1,7 @@
 package com.newcore.myformvalidation
 
 import android.view.View
+import android.widget.CompoundButton
 import android.widget.EditText
 import androidx.annotation.IdRes
 import com.newcore.core.ViewContainer
@@ -10,7 +11,7 @@ import com.newcore.myformvalidation.formfield.BaseFormField
 import com.newcore.myformvalidation.validators.IsCheckedValidator
 
 
-class MyForm {
+class MyForm(private var layoutView: ViewContainer) {
     fun checkFieldsMode(checkFieldsMode: CheckFieldsMode) {
         this.checkFieldsMode = checkFieldsMode
     }
@@ -92,21 +93,23 @@ class MyForm {
     }
 
     fun checkField(
-        view: View,
+        view: CompoundButton,
         isOptional: Boolean = false,
+        layoutView: ViewContainer? = null,
         isCheckedValidator: (IsCheckedValidator.() -> Unit)? = null,
     ): IsCheckedValidator {
-        return checkField(view.id, isOptional, isCheckedValidator)
+        return checkField(view.id, isOptional, layoutView, isCheckedValidator)
     }
 
     fun checkField(
         @IdRes idRes: Int,
         isOptional: Boolean = false,
+        layoutView: ViewContainer? = null,
         isCheckedValidator: (IsCheckedValidator.() -> Unit)? = null,
     ): IsCheckedValidator {
         val checkedValidator = IsCheckedValidator()
         isCheckedValidator?.invoke(checkedValidator)
-        fields.add(MyFormCheckField(idRes, isOptional, checkedValidator))
+        fields.add(MyFormCheckField(idRes, isOptional, layoutView, checkedValidator))
         return checkedValidator
     }
 
@@ -125,7 +128,6 @@ class MyForm {
         }
     }
 
-    private lateinit var layoutView: ViewContainer
 
     fun start(layoutView: ViewContainer) {
         this.layoutView = layoutView

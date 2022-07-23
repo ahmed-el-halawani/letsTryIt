@@ -35,6 +35,9 @@ class FormValidationFragment :
             input(binding.etUserName, "username") {
                 isNotEmpty()
             }
+            checkable(binding.checkBox, "checkBox"){
+
+            }
             submitWith(binding.btnSubmit) {
                 Log.e(TAG, "onViewCreated: $it")
                 Toast.makeText(

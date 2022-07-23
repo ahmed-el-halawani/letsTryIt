@@ -23,6 +23,8 @@ abstract class BaseFormField<V : TextView, D>(
         return message is ValidatorResult.Success
     }
 
+
+
     fun setShowErrorState(checkFieldsMode: CheckFieldsMode) {
         showError = when (checkFieldsMode) {
             CheckFieldsMode.Always -> true

@@ -28,47 +28,35 @@ class FormViewModel {
 fun Fragment.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> Unit): MyForm {
     val vm = FormViewModel.getInstance(this.javaClass)
 
-    if (vm.myForm == null) {
-        MyForm().apply {
-            myForm(this)
-            start(viewContainer ?: object : ViewContainer {
-                override fun <T : View> findViewById(id: Int): T =
-                    requireView().findViewById(id)
-
-            })
-            vm.myForm = this
-        }
-    } else {
-        vm.myForm!!.start(viewContainer ?: object : ViewContainer {
-            override fun <T : View> findViewById(id: Int): T =
-                requireView().findViewById(id)
-
-        })
+    val container = viewContainer ?: object : ViewContainer {
+        override fun <T : View> findViewById(id: Int): T =
+            requireView().findViewById(id)
     }
 
-    return vm.myForm!!
+    if (vm.myForm == null) {
+        MyForm(container).apply {
+            myForm(this)
+            vm.myForm = this
+        }
+    }
+
+    return vm.myForm!!.also { it.start(container) }
 }
 
 fun Activity.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> Unit): MyForm {
     val vm = FormViewModel.getInstance(this.javaClass)
 
-    if (vm.myForm == null) {
-        MyForm().apply {
-            myForm(this)
-            start(viewContainer ?: object : ViewContainer {
-                override fun <T : View> findViewById(id: Int): T =
-                    this@vmForm.findViewById(id)
-
-            })
-            vm.myForm = this
-        }
-    } else {
-        vm.myForm!!.start(viewContainer ?: object : ViewContainer {
-            override fun <T : View> findViewById(id: Int): T =
-                this@vmForm.findViewById(id)
-
-        })
+    val container = viewContainer ?: object : ViewContainer {
+        override fun <T : View> findViewById(id: Int): T =
+            this@vmForm.findViewById(id)
     }
 
-    return vm.myForm!!
+    if (vm.myForm == null) {
+        MyForm(container).apply {
+            myForm(this)
+            vm.myForm = this
+        }
+    }
+
+    return vm.myForm!!.also { it.start(container) }
 }
