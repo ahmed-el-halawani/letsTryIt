@@ -13,7 +13,7 @@ import com.newcore.myformvalidation.validators.IsCheckedValidator
 
 class MyForm(private var layoutView: ViewContainer) {
 
-    var checkFieldsMode: CheckFieldsMode = CheckFieldsMode.AfterFirstSubmit
+    var checkFieldsMode: CheckFieldsMode = CheckFieldsMode.Always
         private set(value) {
             field = value
             setOnChangeErrorCheck?.invoke(value)

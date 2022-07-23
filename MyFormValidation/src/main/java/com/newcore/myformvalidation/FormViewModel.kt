@@ -36,39 +36,37 @@ class FormViewModel {
 }
 
 fun Fragment.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> Unit): MyForm {
-    val vm = FormViewModel.getInstance(this.javaClass)
+    //    val vm = FormViewModel.getInstance(this.javaClass)
 
     val container = viewContainer ?: object : ViewContainer {
         override fun <T : View> findViewById(id: Int): T =
             requireView().findViewById(id)
     }
 
-    MyForm(container).apply {
+    return MyForm(container).apply {
         myForm(this)
-        vm.myForm?.checkFieldsMode?.also {
-            this.checkFieldsMode(it)
-        }
-        vm.myForm = this
-    }
+        //        vm.myForm?.checkFieldsMode?.also {
+        //            this.checkFieldsMode(it)
+        //        }
+        //        vm.myForm = this
+    }.also { it.start(container) }
 
-    return vm.myForm!!.also { it.start(container) }
 }
 
 fun Activity.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> Unit): MyForm {
-    val vm = FormViewModel.getInstance(this.javaClass)
+    //    val vm = FormViewModel.getInstance(this.javaClass)
 
     val container = viewContainer ?: object : ViewContainer {
         override fun <T : View> findViewById(id: Int): T =
             this@vmForm.findViewById(id)
     }
 
-    MyForm(container).apply {
+    return MyForm(container).apply {
         myForm(this)
-        vm.myForm?.checkFieldsMode?.also {
-            this.checkFieldsMode(it)
-        }
-        vm.myForm = this
-    }
+        //        vm.myForm?.checkFieldsMode?.also {
+        //            this.checkFieldsMode(it)
+        //        }
+        //        vm.myForm = this
+    }.also { it.start(container) }
 
-    return vm.myForm!!.also { it.start(container) }
 }
