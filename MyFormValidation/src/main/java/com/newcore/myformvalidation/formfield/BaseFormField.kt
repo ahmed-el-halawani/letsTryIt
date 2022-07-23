@@ -9,6 +9,7 @@ import com.newcore.myformvalidation.enums.CheckFieldsMode
 abstract class BaseFormField<V : TextView, D>(
     @IdRes val id: Int,
     var isOptional: Boolean = false,
+    var layoutView: ViewContainer? = null,
 ) {
     abstract fun initListeners()
     abstract fun getValue(): D
@@ -30,7 +31,7 @@ abstract class BaseFormField<V : TextView, D>(
     }
 
     open fun updateView(layoutView: ViewContainer) {
-        field = layoutView.findViewById(id)
+        field = (this.layoutView ?: layoutView).findViewById(id)
         initListeners()
     }
 

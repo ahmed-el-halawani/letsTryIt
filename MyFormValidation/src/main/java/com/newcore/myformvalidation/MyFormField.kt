@@ -13,8 +13,9 @@ class MyFormField(
     private val inputTypeClass: InputTextClass? = null,
     private val inputTypeTransformation: Int? = null,
     isOptional: Boolean = false,
+    layoutView: ViewContainer? = null,
     private val onTextChange: ((BaseFormField<EditText, String>) -> Unit)? = null,
-) : BaseFormField<EditText, String>(id, isOptional) {
+) : BaseFormField<EditText, String>(id, isOptional, layoutView) {
 
     override fun getValue(): String =
         field.text.toString()

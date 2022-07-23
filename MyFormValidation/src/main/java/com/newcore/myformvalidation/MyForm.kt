@@ -49,11 +49,14 @@ class MyForm {
         inputTypeClass: InputTextClass? = null,
         inputTypeTransformation: Int? = null,
         isOptional: Boolean = false,
+        layoutView: ViewContainer? = null,
         validatorsBuild: (ValidatorsBuild.() -> Unit)? = null,
     ) = inputField(
         view.id, inputTypeClass,
         inputTypeTransformation,
-        isOptional, validatorsBuild
+        isOptional,
+        layoutView,
+        validatorsBuild
     )
 
 
@@ -62,13 +65,19 @@ class MyForm {
         inputTypeClass: InputTextClass? = null,
         inputTypeTransformation: Int? = null,
         isOptional: Boolean = false,
+        layoutView: ViewContainer? = null,
         validatorsBuild: (ValidatorsBuild .() -> Unit)? = null,
     ): MyFormField {
         val vBuilder = ValidatorsBuild()
         validatorsBuild?.invoke(vBuilder)
 
         val formField =
-            MyFormField(idRes, vBuilder, inputTypeClass, inputTypeTransformation, isOptional) {
+            MyFormField(idRes,
+                vBuilder,
+                inputTypeClass,
+                inputTypeTransformation,
+                isOptional,
+                layoutView) {
                 changeListener?.invoke(fields.joinToString(separator = ",") {
                     "{key: " + it.id.toString() + " value: " + it.getValue() + " message: " + it.message + " }"
                 }, this)
