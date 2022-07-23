@@ -2,8 +2,8 @@ package com.newcore.myformvalidation.formfield
 
 import android.widget.TextView
 import androidx.annotation.IdRes
+import com.newcore.core.ViewContainer
 import com.newcore.myformvalidation.ValidatorResult
-import com.newcore.myformvalidation.ViewContainer
 import com.newcore.myformvalidation.enums.CheckFieldsMode
 
 abstract class BaseFormField<V : TextView, D>(

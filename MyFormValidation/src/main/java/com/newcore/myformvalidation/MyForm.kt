@@ -3,6 +3,7 @@ package com.newcore.myformvalidation
 import android.view.View
 import android.widget.EditText
 import androidx.annotation.IdRes
+import com.newcore.core.ViewContainer
 import com.newcore.myformvalidation.enums.CheckFieldsMode
 import com.newcore.myformvalidation.enums.InputTextClass
 import com.newcore.myformvalidation.formfield.BaseFormField
