@@ -5,18 +5,28 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.newcore.core.ViewContainer
 
+
 class FormViewModel {
 
     companion object {
-        private var formViewModel2 = HashMap<Class<*>, FormViewModel>()
+        private var formViewModel2: Pair<Class<*>, FormViewModel>? = null
 
         fun getInstance(refactorClass: Class<*>): FormViewModel {
-            return if (formViewModel2.containsKey(refactorClass))
-                formViewModel2[refactorClass]!!
-            else
+            return if (formViewModel2 == null) {
                 FormViewModel().also {
-                    formViewModel2[refactorClass] = it
+                    formViewModel2 = Pair(refactorClass, it)
                 }
+            } else if (formViewModel2!!.first == refactorClass) {
+                formViewModel2!!.second
+            } else {
+                FormViewModel().also {
+                    formViewModel2 = Pair(refactorClass, it)
+                }
+            }
+        }
+
+        fun removeVm(refactorClass: Class<*>) {
+            formViewModel2 = null
         }
     }
 
@@ -33,11 +43,12 @@ fun Fragment.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> U
             requireView().findViewById(id)
     }
 
-    if (vm.myForm == null) {
-        MyForm(container).apply {
-            myForm(this)
-            vm.myForm = this
+    MyForm(container).apply {
+        myForm(this)
+        vm.myForm?.checkFieldsMode?.also {
+            this.checkFieldsMode(it)
         }
+        vm.myForm = this
     }
 
     return vm.myForm!!.also { it.start(container) }
@@ -51,11 +62,12 @@ fun Activity.vmForm(viewContainer: ViewContainer? = null, myForm: MyForm.() -> U
             this@vmForm.findViewById(id)
     }
 
-    if (vm.myForm == null) {
-        MyForm(container).apply {
-            myForm(this)
-            vm.myForm = this
+    MyForm(container).apply {
+        myForm(this)
+        vm.myForm?.checkFieldsMode?.also {
+            this.checkFieldsMode(it)
         }
+        vm.myForm = this
     }
 
     return vm.myForm!!.also { it.start(container) }

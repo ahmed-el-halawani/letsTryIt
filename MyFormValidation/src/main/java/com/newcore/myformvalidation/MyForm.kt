@@ -12,6 +12,13 @@ import com.newcore.myformvalidation.validators.IsCheckedValidator
 
 
 class MyForm(private var layoutView: ViewContainer) {
+
+    var checkFieldsMode: CheckFieldsMode = CheckFieldsMode.AfterFirstSubmit
+        private set(value) {
+            field = value
+            setOnChangeErrorCheck?.invoke(value)
+        }
+
     fun checkFieldsMode(checkFieldsMode: CheckFieldsMode) {
         this.checkFieldsMode = checkFieldsMode
     }
@@ -150,11 +157,7 @@ class MyForm(private var layoutView: ViewContainer) {
     private var validListener: ((MyForm) -> Unit)? = null
     private var inValidListener: ((BaseFormField<*, *>?) -> Unit)? = null
     private var changeListener: ((String, MyForm) -> Unit)? = null
-    private var checkFieldsMode: CheckFieldsMode = CheckFieldsMode.AfterFirstSubmit
-        set(value) {
-            field = value
-            setOnChangeErrorCheck?.invoke(value)
-        }
+
     private var submitBtn: Int? = null
     private val fields = mutableListOf<BaseFormField<*, *>>()
 
